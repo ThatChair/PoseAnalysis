@@ -1,0 +1,35 @@
+{
+  "File": [
+      {
+        "Open": [
+          "Video",
+          "Pose",
+          "Animation"
+        ]
+      },
+      "Settings",
+      {
+        "Export" : [
+          "Pose",
+          "Animation"
+        ]
+      }
+    ],
+  "Edit": [
+      "Undo",
+      "Redo"
+    ],
+  "Tools" : [
+
+  ],
+  "View": [
+    "Video",
+    "3D Pose",
+    "Split"
+  ],
+  "Window": [
+
+  ],
+  "Help":
+    "Search"
+}
