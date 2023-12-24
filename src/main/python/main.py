@@ -3,6 +3,7 @@ import mediapipe as mp
 import json
 import sys
 
+
 def process_video(input_video_path, output_json_path):
     # Initialize MediaPipe Pose
     mp_pose = mp.solutions.pose

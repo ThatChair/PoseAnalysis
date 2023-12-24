@@ -10,6 +10,8 @@ import javafx.scene.layout.Pane
 // The main pane (I know, great name right!) of the app. Everything is added to this pane
 object MainPane: Pane() {
 
+    val loading = false
+
     init {
         // Sets the background to the specified background color in App
         MainPane.background = Background(BackgroundFill(bgColor, CornerRadii(0.0), Insets.EMPTY))

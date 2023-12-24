@@ -166,7 +166,7 @@ object MainMenuBar: MenuBar() {
         }
 
         // Defines the path to the python script that analyzes the copied file
-        val pythonScript = "$path\\src\\main\\python\\main.py"
+        val pythonScript = if (isRunningFromJar()) "$path\\python\\main.py" else "$path\\src\\main\\python\\main.py"
 
         try {
 
