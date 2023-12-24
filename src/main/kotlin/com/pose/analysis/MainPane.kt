@@ -1,7 +1,6 @@
 package com.pose.analysis
 
 import com.pose.analysis.App.Companion.bgColor
-import com.pose.analysis.MenuBar.MainMenuBar
 import javafx.geometry.Insets
 import javafx.scene.layout.Background
 import javafx.scene.layout.BackgroundFill

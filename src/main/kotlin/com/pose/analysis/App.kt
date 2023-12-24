@@ -15,14 +15,14 @@ class App : Application() {
         // Sets up the stage, the top level container that contains the entire application
         lateinit var stage: Stage
         // Sets up a static BG color value for global use. From a scale of 0 (Black) to 255 (White)
-        val bgColorValue = 35.0
+        private const val BACKGROUNDVALUE = 35.0
         // Turns the static color value into a greyscale color useable by JavaFX
-        val bgColor = Color.color(bgColorValue / 255, bgColorValue / 255, bgColorValue / 255)
+        val bgColor: Color = Color.color(BACKGROUNDVALUE / 255, BACKGROUNDVALUE / 255, BACKGROUNDVALUE / 255)
         // The opposite of the background color, for use in text or other nodes that need to be high visibility.
-        val textColor = Color.color((255 - bgColorValue) / 255, (255 - bgColorValue) / 255, (255 - bgColorValue) / 255)
+        val textColor: Color = Color.color((255 - BACKGROUNDVALUE) / 255, (255 - BACKGROUNDVALUE) / 255, (255 - BACKGROUNDVALUE) / 255)
 
         // Gets the path the application is located, used for finding assets
-        val path = System.getProperty("user.dir")
+        val path: String = System.getProperty("user.dir")
 
         @JvmStatic
         // Called upon startup of the application
