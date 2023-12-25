@@ -39,7 +39,7 @@ object MainMenuBar: MenuBar() {
 
     // Sets up view menu and all submenus/graphics
     private val viewMenu = Menu("")
-    private val viewMenuGraphic = Label("Menu")
+    private val viewMenuGraphic = Label("View")
     private val viewVideoMenuItem = MenuItem("Video")
     private val view3DPoseMenuItem = MenuItem("3D Pose")
     private val viewSplitMenuItem = MenuItem("Split")
@@ -76,11 +76,11 @@ object MainMenuBar: MenuBar() {
 
         )
 
-        // Sets the textcolor of the File Menu graphic to the correct color
+        // Sets the color of the View Menu graphic to the correct color
         fileMenuGraphic.setColor(textColor)
-        // Sets the font of the File Menu graphic
+        // Sets the font of the View Meny graphic
         fileMenuGraphic.font = smallFont
-        // Sets the graphic of the File Menu
+        // Sets the graphic of the View Menu
         fileMenu.graphic = fileMenuGraphic
 
         // Adds all submenus to the File Menu
@@ -152,6 +152,8 @@ object MainMenuBar: MenuBar() {
 
             // Calls the start loading function on the original thread
             Platform.runLater {
+                // Turns off welcome stuff if its on
+                isWelcome.set(false)
                 startLoading()
             }
 

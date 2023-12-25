@@ -17,16 +17,18 @@ class App : Application() {
         lateinit var stage: Stage
         // Sets up a static BG color value for global use. From a scale of 0 (Black) to 255 (White)
         private const val BACKGROUNDVALUE = 35.0
-        // Turns the static color value into a greyscale color useable by JavaFX
+        // Turns the static color value into a greyscale color usable by JavaFX
         val bgColor: Color = Color.color(BACKGROUNDVALUE / 255, BACKGROUNDVALUE / 255, BACKGROUNDVALUE / 255)
         // The opposite of the background color, for use in text or other nodes that need to be high visibility.
         val textColor: Color = Color.color((255 - BACKGROUNDVALUE) / 255, (255 - BACKGROUNDVALUE) / 255, (255 - BACKGROUNDVALUE) / 255)
+        // A more muted verson of textColor, easy on eyes, good for large text
+        val mutedTextColor: Color = Color.color(((255 - BACKGROUNDVALUE) / 255) * 0.5, ((255 - BACKGROUNDVALUE) / 255) * 0.5, ((255 - BACKGROUNDVALUE) / 255) * 0.5)
 
         // Gets the path the application is located, used for finding assets
         val path: String = System.getProperty("user.dir")
 
         // Load the TTF file
-        val smallFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 12.0)
+        val smallFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 13.0)
         // Load the TTF file
         val mediumFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 36.0)
         // Load the TTF file
