@@ -5,6 +5,7 @@ import javafx.geometry.Rectangle2D
 import javafx.scene.Scene
 import javafx.scene.image.Image
 import javafx.scene.paint.Color
+import javafx.scene.text.Font
 import javafx.stage.Screen
 import javafx.stage.Stage
 
@@ -24,6 +25,13 @@ class App : Application() {
         // Gets the path the application is located, used for finding assets
         val path: String = System.getProperty("user.dir")
 
+        // Load the TTF file
+        val smallFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 12.0)
+        // Load the TTF file
+        val mediumFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 36.0)
+        // Load the TTF file
+        val largeFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 100.0)
+
         @JvmStatic
         // Called upon startup of the application
         fun main(args: Array<String>) {
@@ -41,7 +49,7 @@ class App : Application() {
         // Sets the stage of the app to the already created stage
         Companion.stage = stage
         // Sets the stage icon to the icon at the specified path
-        stage.icons.add(Image("$path\\res\\icon.png"))
+        stage.icons.add(Image("icon.png"))
 
         // Defines the bounds of the screen
         val bounds = Rectangle2D(screen.visualBounds.minX, screen.visualBounds.minY, screen.visualBounds.width, screen.visualBounds.height)
