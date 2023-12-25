@@ -149,16 +149,15 @@ object MainMenuBar: MenuBar() {
 
         // Starts a separate thread so the application doesn't freeze
         thread {
-
-            // Calls the start loading function on the original thread
-            Platform.runLater {
-                // Turns off welcome stuff if its on
-                isWelcome.set(false)
-                startLoading()
-            }
-
             // Checks if there is a selected file
             if (selectedFile != null) {
+
+                // Calls the start loading function on the original thread
+                Platform.runLater {
+                    // Turns off welcome stuff if it's on
+                    isWelcome.set(false)
+                    startLoading()
+                }
 
                 // Sets the destination and desired file name for copying
                 val destinationDirectory = File("$path\\res\\temp")
