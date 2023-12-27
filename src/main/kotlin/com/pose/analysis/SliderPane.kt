@@ -1,5 +1,7 @@
 package com.pose.analysis
 
+import com.pose.analysis.App.Companion.mutedTextColor
+import com.pose.analysis.App.Companion.textColor
 import com.pose.analysis.MainPane.loadingGif
 import com.pose.analysis.MainPane.screenWidth
 import javafx.beans.binding.Bindings
@@ -39,6 +41,7 @@ object SliderPane: Pane() {
         sliderPoint.centerY = sliderHeight / 2.0
         sliderPoint.centerXProperty().bind(sliderPointPos)
         sliderPoint.radius = sliderHeight / 1.75
+        sliderPoint.fill = textColor
 
         // Sets the start of the slider
         sliderLine.startX = sliderHeight * 2.0
@@ -46,12 +49,13 @@ object SliderPane: Pane() {
         // Makes sure the slider point is at the beginning of the slider
         sliderPointPos.set(sliderLine.startX)
 
-        // Sets the the slider to the right place and size
+        // Sets the slider to the right place and size
         sliderLine.startY = sliderHeight / 2.0
         sliderLine.endX = screenWidth - (sliderHeight / 2.0)
         sliderLine.endY = sliderLine.startY
         sliderLine.strokeWidth = sliderHeight / 2.0
         sliderLine.strokeLineCap = StrokeLineCap.ROUND
+        sliderLine.stroke = mutedTextColor
 
         // Moves the play button to the correct location
         playButton.layoutX = -(sliderHeight / 7.5)
