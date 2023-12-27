@@ -1,6 +1,5 @@
 package com.pose.analysis
 
-import com.pose.analysis.SliderPane.sliderPointPos
 import javafx.scene.control.Label
 import javafx.scene.input.MouseButton
 import javafx.scene.paint.Color
@@ -29,31 +28,11 @@ fun isRunningFromJar(): Boolean {
     return classPath.startsWith("jar:")
 }
 
-// Calculates the dragging/playing of a slider
-fun calculateSliderDrag(point: Circle, line: Line, minX: Double, maxX: Double): Circle {
-    // Triggers the calculation when the mouse is dragging the point on the slider
-    point.setOnMouseDragged { event ->
-        if (event.button == MouseButton.PRIMARY) {
-            // Changes the position of the slider so that it is at the same position as the mouse, taking into account the minimum and maximum X values
-            sliderPointPos.set(
-                (sliderPointPos.get() + event.sceneX - point.centerX - point.radius).coerceIn(
-                    minX,
-                    maxX
-                )
-            )
-        }
-    }
-    line.setOnMouseDragged { event ->
-        if (event.button == MouseButton.PRIMARY) {
-            // Changes the position of the slider so that it is at the same position as the mouse, taking into account the minimum and maximum X values
-            sliderPointPos.set(
-                (sliderPointPos.get() + event.sceneX - point.centerX - point.radius).coerceIn(
-                    minX,
-                    maxX
-                )
-            )
-        }
-    }
-    // Returns the translated point
-    return point
+fun Color.toHexString(): String {
+    val r = (this.red * 255).toInt()
+    val g = (this.green * 255).toInt()
+    val b = (this.blue * 255).toInt()
+    val opacity = (this.opacity * 255).toInt()
+
+    return String.format("#%02X%02X%02X%02X", r, g, b, opacity)
 }

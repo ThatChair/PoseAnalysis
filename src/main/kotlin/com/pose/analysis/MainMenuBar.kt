@@ -7,11 +7,13 @@ import com.pose.analysis.App.Companion.stage
 import com.pose.analysis.App.Companion.textColor
 import com.pose.analysis.MainPane.doneLoading
 import com.pose.analysis.MainPane.startLoading
+import com.pose.analysis.VideoPane.mediaPlayer
 import javafx.application.Platform
 import javafx.scene.control.Label
 import javafx.scene.control.Menu
 import javafx.scene.control.MenuBar
 import javafx.scene.control.MenuItem
+import javafx.scene.media.MediaPlayer
 import javafx.stage.FileChooser
 import javafx.stage.FileChooser.ExtensionFilter
 import java.io.BufferedReader
@@ -20,6 +22,7 @@ import java.io.InputStreamReader
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardCopyOption
+import java.util.concurrent.CountDownLatch
 import kotlin.concurrent.thread
 
 // The main menu bar that at the top of the screen
@@ -145,77 +148,65 @@ object MainMenuBar: MenuBar() {
         fileChooser.extensionFilters.add(extensionFilter)
 
         // Opens the file chooser
-        val selectedFile: File? = fileChooser.showOpenDialog(stage)
+        selectedFile = fileChooser.showOpenDialog(stage)
 
         // Starts a separate thread so the application doesn't freeze
         thread {
             // Checks if there is a selected file
             if (selectedFile != null) {
 
+
+
                 // Calls the start loading function on the original thread
                 Platform.runLater {
                     // Turns off welcome stuff if it's on
                     isWelcome.set(false)
                     startLoading()
+                    if (selectedFile != null && selectedFile!!.exists()) {
+                        VideoPane.renderVideo(selectedFile!!)
+                    } else {
+                        println("Selected file does not exist.")
+                    }
                 }
 
-                // Sets the destination and desired file name for copying
-                val destinationDirectory = File("$path\\res\\temp")
-                val newFileName = "vid.mp4"
+                // Defines the path to the python script that analyzes the copied file
+                val pythonScript = if (isRunningFromJar()) "$path\\python\\main.py" else "$path\\src\\main\\python\\main.py"
 
                 try {
-                    // Sets the destination path with the destination directory and new file name
-                    val destinationPath: Path = destinationDirectory.toPath().resolve(newFileName)
 
-                    // Copies the file to the destination
-                    Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING)
-                    println("File copied and renamed to: ${destinationPath.toAbsolutePath()}")
+                    // Creates and starts the process to run the python script with a command
+                    val processBuilder = ProcessBuilder(listOf("python", pythonScript, path, selectedFile!!.absolutePath))
+                    val process = processBuilder.start()
+
+                    // Waits for the process to finish
+                    val exitCode = process.waitFor()
+
+                    // Read the output of the process
+                    val reader = BufferedReader(InputStreamReader(process.inputStream))
+                    var line: String?
+                    while (reader.readLine().also { line = it } != null) {
+                        println(line)
+                    }
+
+                    // Capture and print standard error
+                    val errorReader = BufferedReader(InputStreamReader(process.errorStream))
+                    var errorLine: String?
+                    while (errorReader.readLine().also { errorLine = it } != null) {
+                        System.err.println(errorLine)
+                    }
+
+                    // Print the exit code
+                    println("Exit Code: $exitCode")
 
                 } catch (e: Exception) {
-
-                    // Prints an error if an error occurs
                     e.printStackTrace()
-                    println("Error copying the file.")
-
                 }
+
             } else {
 
                 // Prints if no file is selected. Duh.
                 println("No file selected")
 
-            }
-
-            // Defines the path to the python script that analyzes the copied file
-            val pythonScript = if (isRunningFromJar()) "$path\\python\\main.py" else "$path\\src\\main\\python\\main.py"
-
-            try {
-
-                // Creates and starts the process to run the python script with a command
-                val processBuilder = ProcessBuilder(listOf("python", pythonScript, path))
-                val process = processBuilder.start()
-
-                // Waits for the process to finish
-                val exitCode = process.waitFor()
-
-                // Read the output of the process
-                val reader = BufferedReader(InputStreamReader(process.inputStream))
-                var line: String?
-                while (reader.readLine().also { line = it } != null) {
-                    println(line)
-                }
-
-                // Capture and print standard error
-                val errorReader = BufferedReader(InputStreamReader(process.errorStream))
-                var errorLine: String?
-                while (errorReader.readLine().also { errorLine = it } != null) {
-                    System.err.println(errorLine)
-                }
-
-                // Print the exit code
-                println("Exit Code: $exitCode")
-
-            } catch (e: Exception) {
-                e.printStackTrace()
             }
 
             // Calls the done loading function on the original thread

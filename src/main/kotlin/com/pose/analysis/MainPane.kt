@@ -51,7 +51,8 @@ object MainPane: VBox() {
         // Adds all children to the middle pane
         middlePane.children.addAll(
             loadingGif,
-            WelcomePane
+            WelcomePane,
+            AnimationPane
         )
 
         // Sets preferred and max height for the bottom pane

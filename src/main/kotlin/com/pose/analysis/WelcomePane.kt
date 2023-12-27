@@ -10,13 +10,13 @@ import javafx.scene.layout.StackPane
 
 object WelcomePane: StackPane() {
 
-    val welcomeText = Label("Welcome to PoseAnalysis!")
+    private val welcomeText = Label("Welcome to PoseAnalysis!")
 
-    val helpText = Label("For a tutorial, click help -> intro")
+    private val helpText = Label("For a tutorial, click Help -> Intro")
 
-    val startText = Label("To get started, click file -> open, then choose video, pose, or animation")
+    private val startText = Label("To get started, click File -> Open, then choose Video, Pose, or Animation")
 
-    val infoText = Label("For more information, click help -> readme")
+    private val infoText = Label("For more information, click Help -> Readme")
 
     init {
 

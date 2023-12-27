@@ -1,6 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.gradle.internal.os.OperatingSystem.FREE_BSD
-import org.gradle.internal.os.OperatingSystem
 
 plugins {
   java
@@ -40,7 +38,7 @@ repositories {
 
 javafx {
   version = "19"
-  modules = "javafx.controls,javafx.fxml".split(",").toMutableList()
+  modules = "javafx.controls,javafx.fxml,javafx.media".split(",").toMutableList()
 }
 application {
   mainClass = "com.pose.analysis.Main"

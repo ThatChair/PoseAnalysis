@@ -63,7 +63,7 @@ def process_video(input_video_path, output_json_path):
 
 cwd = sys.argv[1]
 
-input_path = cwd + "\\res\\temp\\vid.mp4"
+input_path = sys.argv[2]
 
 output_path = cwd + "\\res\\temp\\data.json"
 try:
