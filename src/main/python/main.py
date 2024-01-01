@@ -1,13 +1,14 @@
-import cv2
-import mediapipe as mp
 import json
 import sys
 
+import cv2
+import mediapipe as mp
 
-def process_video(input_video_path, output_json_path):
+
+def process_video(input_video_path, output_json_path, model_complexity):
     # Initialize MediaPipe Pose
     mp_pose = mp.solutions.pose
-    pose = mp_pose.Pose()
+    pose = mp_pose.Pose(model_complexity=model_complexity)
 
     # Open video file
     cap = cv2.VideoCapture(input_video_path)
@@ -18,7 +19,7 @@ def process_video(input_video_path, output_json_path):
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
     # Initialize output data structure
-    output_data = []
+    output_data = [fps]
 
     # Process each frame
     frame_number = 0
@@ -40,17 +41,16 @@ def process_video(input_video_path, output_json_path):
         results = pose.process(rgb_frame)
 
         # Extract 3D pose landmarks
-        if results.pose_landmarks:
-            landmarks_3d = [(landmark.x, landmark.y, landmark.z) for landmark in results.pose_landmarks.landmark]
+        if results.pose_world_landmarks:
+            landmarks_3d = [(landmark.x, landmark.y, landmark.z) for landmark in results.pose_world_landmarks.landmark]
+
+            # Remove landmarks with IDs 0-10
+            landmarks_3d = landmarks_3d[11:]
         else:
             landmarks_3d = None
 
         # Add frame data to output
-        frame_data = {
-            "frame_number": frame_number,
-            "landmarks_3d": landmarks_3d
-        }
-        output_data.append(frame_data)
+        output_data.append(landmarks_3d)
 
     # Release video capture and pose estimation resources
     cap.release()
@@ -67,6 +67,6 @@ input_path = cwd + "\\res\\temp\\vid.mp4"
 
 output_path = cwd + "\\res\\temp\\data.json"
 try:
-    process_video(input_path, output_path)
+    process_video(input_path, output_path, 2)
 except Exception:
     print(Exception)

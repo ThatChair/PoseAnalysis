@@ -1,5 +1,7 @@
 package com.pose.analysis
 
+import com.pose.analysis.`3DPane`.render
+import com.pose.analysis.`3DPane`.zoom
 import com.pose.analysis.App.Companion.mutedTextColor
 import com.pose.analysis.App.Companion.textColor
 import com.pose.analysis.MainPane.loadingGif
@@ -78,6 +80,11 @@ object SliderPane: Pane() {
         // Changes isAnimationPlaying when the button is pressed
         playButton.setOnAction {
             isAnimationPlaying.set(!isAnimationPlaying.get())
+            if (isAnimationPlaying.get()) {
+                animationTimer.start()
+            } else {
+                animationTimer.stop()
+            }
         }
 
         // Scales the play button image accordingly
@@ -93,6 +100,19 @@ object SliderPane: Pane() {
 
         // Calls this function, which calculates the dragging of the slider (no duh!)
         calculateSliderDrag(sliderPoint, sliderLine, sliderLine.startX, sliderLine.endX)
+
+        sliderPointPos.addListener { _, _, newValue ->
+            if (!isAnimationPlaying.get()) {
+                animPercent.set((newValue.toDouble() - sliderLine.startX) / (sliderLine.endX - sliderLine.startX))
+                render(currentFrame, zoom)
+            }
+        }
+
+        animPercent.addListener { _, _, newValue ->
+            if (isAnimationPlaying.get()) {
+                sliderPointPos.set((newValue.toDouble() * ((sliderLine.endX - sliderLine.startX))) + sliderLine.startX)
+            }
+        }
 
         // Makes the slider only visible when the app isn't loading and when the welcome text is gone
         SliderPane.visibleProperty().bind(

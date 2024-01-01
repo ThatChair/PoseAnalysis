@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="Some small visual changes / color tweaks">
+    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="Cleaned up the WelcomePane">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/3DPane.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/WelcomePane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/WelcomePane.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/AnimationManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/AnimationManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Functions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Functions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainPane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainPane.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/SliderPane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/SliderPane.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,10 +43,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
         <option value="Python Script" />
         <option value="Kotlin File" />
         <option value="Kotlin Object" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -95,7 +102,7 @@
       <recent name="com.pose.analysis" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PoseAnalysis [fatJar]">
+  <component name="RunManager" selected="Kotlin.Main">
     <configuration name="JFXBase [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -200,8 +207,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.PoseAnalysis [fatJar]" />
         <item itemvalue="Kotlin.Main" />
+        <item itemvalue="Gradle.PoseAnalysis [fatJar]" />
         <item itemvalue="Python.main" />
         <item itemvalue="Gradle.JFXBase [run]" />
         <item itemvalue="Gradle.JFXBase [build]" />
@@ -280,7 +287,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703697695353</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Cleaned up the WelcomePane">
+      <option name="closed" value="true" />
+      <created>1703699295955</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1703699295955</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -292,6 +307,7 @@
     <MESSAGE value="added epic loading gif &amp; cool font" />
     <MESSAGE value="oops forgot to add font lol" />
     <MESSAGE value="Some small visual changes / color tweaks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some small visual changes / color tweaks" />
+    <MESSAGE value="Cleaned up the WelcomePane" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up the WelcomePane" />
   </component>
 </project>

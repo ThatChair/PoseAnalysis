@@ -45,13 +45,16 @@ object MainPane: VBox() {
         )
 
         // Sets preferred and max height for the middle pane
-        middlePane.prefHeight = 1000.0
+        middlePane.prefHeight = screenHeight * 0.9
         middlePane.maxHeight = screenHeight * 0.9
+        middlePane.prefWidth = screenWidth
+        middlePane.maxWidth = screenWidth
 
         // Adds all children to the middle pane
         middlePane.children.addAll(
             loadingGif,
-            WelcomePane
+            WelcomePane,
+            `3DPane`
         )
 
         // Sets preferred and max height for the bottom pane
@@ -71,6 +74,7 @@ object MainPane: VBox() {
             bottomPane
 
         )
+
 
     }
 

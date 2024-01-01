@@ -88,7 +88,7 @@ object MainMenuBar: MenuBar() {
 
             fileOpenMenu,
             fileSettingsMenuItem,
-            fileExportMenu
+            fileExportMenu,
 
         )
 
@@ -218,8 +218,10 @@ object MainMenuBar: MenuBar() {
                 e.printStackTrace()
             }
 
+
             // Calls the done loading function on the original thread
             Platform.runLater {
+                loadAnimation()
                 doneLoading()
             }
         }
