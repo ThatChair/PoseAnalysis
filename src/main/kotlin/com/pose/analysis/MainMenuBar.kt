@@ -47,7 +47,7 @@ object MainMenuBar: MenuBar() {
     // Sets up help menu and all submenus/graphics
     private val helpMenu = Menu("")
     private val helpMenuGraphic = Label("Help")
-    private val helpSearchMenuItem = MenuItem("Search")
+//    private val helpSearchMenuItem = MenuItem("Search")
 
     init {
         // If on Mac, the is on the Mac, not the app
@@ -116,7 +116,7 @@ object MainMenuBar: MenuBar() {
         // Adds all submenus to the Help Menu
         helpMenu.items.addAll(
 
-            helpSearchMenuItem
+//            helpSearchMenuItem
 
         )
 
