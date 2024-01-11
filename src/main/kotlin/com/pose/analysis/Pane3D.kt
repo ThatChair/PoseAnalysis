@@ -12,9 +12,12 @@ import org.jetbrains.kotlinx.multik.ndarray.data.get
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-object `3DPane` : Pane() {
+object Pane3D : Pane() {
 
     // Standard mediapipe without the head...
+    // This sets up the lines connecting the dots of the 3D render.
+    // Each array is the connections for the dot at that index (i.e. index on connects to index 12, 13, & 23)
+    // The first couple are commented out because the head is not rendered
     private val personConnections = arrayOf(
 //        arrayOf(2, 5),
 //        arrayOf(),
@@ -51,22 +54,31 @@ object `3DPane` : Pane() {
         arrayOf()
     )
 
+    // Specifies the camera position and the screen position in 3d space
     private val cameraPos = mk.ndarray(mk[0.0, 0.0, 5.0])
     private val screenPos = mk.ndarray(mk[0.0, 0.0, 2.0])
+
+    // Stores the x and y angle the person is rotated at
     private var yAngle = 0.0
     private var xAngle = 0.0
+
+    // Stores the zoom level
     var zoom = 200.0
 
+
+    // Stores the previous mouse x and y coordinates so the x and y angles are incremented
     private var lastX = 0.0
     private var lastY = 0.0
 
     init {
-//        println(middlePane.width / 2.0)
-        `3DPane`.layoutX = middlePane.prefWidth / 2.0
-        `3DPane`.layoutY = middlePane.prefHeight / 2.0
+
+        // Specifies the position of the Pane3D
+        Pane3D.layoutX = middlePane.prefWidth / 2.0
+        Pane3D.layoutY = middlePane.prefHeight / 2.0
 
 
-        `3DPane`.visibleProperty().bind(
+        // Makes sure the Pane3D is only visible when the welcome message is gone and the app isn't loading
+        Pane3D.visibleProperty().bind(
             Bindings.`when`(
                 isWelcome.not()
                     .and(MainPane.loadingGif.visibleProperty().not())
@@ -76,17 +88,23 @@ object `3DPane` : Pane() {
         )
 
         // Set up the mouse drag event handler
-        `3DPane`.setOnMousePressed { event ->
+        Pane3D.setOnMousePressed { event ->
             lastX = event.sceneX
             lastY = event.sceneY
         }
 
-        `3DPane`.setOnMouseDragged { event ->
+        // Calculates how much to change the angleX and angleY when the mouse is dragged
+        Pane3D.setOnMouseDragged { event ->
+
+            // Gets the change in mouse position
             val deltaX = event.sceneX - lastX
             val deltaY = event.sceneY - lastY
 
+            // Uses the change in mouse position to change the angleX and angleY
             yAngle += deltaX * Math.PI / 180
             xAngle += deltaY * Math.PI / 180
+
+            // Re-renders the person
             render(currentFrame, zoom)
 
             // Update lastX and lastY for the next frame
@@ -94,19 +112,22 @@ object `3DPane` : Pane() {
             lastY = event.sceneY
         }
 
-        `3DPane`.setOnZoom { event ->
+        // Handles zooming
+        Pane3D.setOnZoom { event ->
             zoom *= event.zoomFactor
             render(currentFrame, zoom)
         }
 
-        `3DPane`.setOnScroll { event ->
+        // Also handles zooming
+        Pane3D.setOnScroll { event ->
             zoom += event.deltaX
             render(currentFrame, zoom)
         }
     }
 
+    // Big render function. too lazy to comment rn
     fun render(frame: Int, scale: Double) {
-        `3DPane`.children.clear()
+        Pane3D.children.clear()
         var renderList = animation[
             if (frame >= animation.size) animation.size - 1 else frame
         ].reflectX()
@@ -132,7 +153,7 @@ object `3DPane` : Pane() {
             dot.radius = dotSizes[i].remap(minDist, maxDist, minDotSize, maxDotSize)
             dot.centerX = renderList[i][0] * scale
             dot.centerY = renderList[i][1] * scale
-            `3DPane`.children.add(
+            Pane3D.children.add(
                 dot
             )
 
@@ -142,24 +163,12 @@ object `3DPane` : Pane() {
                 line.strokeWidth = 2.0
                 line.startX = renderList[i][0] * scale
                 line.startY = renderList[i][1] * scale
-                println("I: $i")
-                println("J: $j")
-                println("renderListSize: ${renderList.size}")
-                println("personConnectionsSize: ${personConnections.size}")
                 line.endX = renderList[personConnections[i][j] - 11][0] * scale
                 line.endY = renderList[personConnections[i][j] - 11][1] * scale
-                `3DPane`.children.add(
+                Pane3D.children.add(
                     line
                 )
             }
-
-
-//            println("Rendering Dot at X: ${dot.centerX}, Y: ${dot.centerY}")
-
-
         }
-//        println(`3DPane`.children)
     }
-
-
 }

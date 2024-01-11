@@ -26,11 +26,18 @@ fun Label.setColor(color: Color): Label {
     return this
 }
 
+// Remaps a double from the specified range to the other specified range
 fun Double.remap(fromRangeStart: Double, fromRangeEnd: Double, toRangeStart: Double, toRangeEnd: Double): Double {
+    // Gets the range of the fromRange
     val fromRange = fromRangeEnd - fromRangeStart
+
+    // Gets the range of the toRange
     val toRange = toRangeEnd - toRangeStart
 
+    // Normalizes the value
     val normalizedValue = (this - fromRangeStart) / fromRange
+
+    // Returns the range mapped to the new range
     return toRangeStart + normalizedValue * toRange
 }
 
@@ -136,8 +143,6 @@ fun D1Array<Double>.rotateY(radians: Double): D1Array<Double> {
         ]
     )
 
-    val out = rotationMatrix.dot(point)
-
     // Perform the dot product
     val result = rotationMatrix.dot(point)
 
@@ -175,8 +180,6 @@ fun D1Array<Double>.rotateX(radians: Double): D1Array<Double> {
             mk[this[2]]
         ]
     )
-
-    val out = rotationMatrix.dot(point)
 
     // Perform the dot product
     val result = rotationMatrix.dot(point)

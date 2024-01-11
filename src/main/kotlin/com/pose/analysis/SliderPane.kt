@@ -1,11 +1,11 @@
 package com.pose.analysis
 
-import com.pose.analysis.`3DPane`.render
-import com.pose.analysis.`3DPane`.zoom
 import com.pose.analysis.App.Companion.mutedTextColor
 import com.pose.analysis.App.Companion.textColor
 import com.pose.analysis.MainPane.loadingGif
 import com.pose.analysis.MainPane.screenWidth
+import com.pose.analysis.Pane3D.render
+import com.pose.analysis.Pane3D.zoom
 import javafx.beans.binding.Bindings
 import javafx.beans.property.DoubleProperty
 import javafx.beans.property.SimpleDoubleProperty
@@ -21,47 +21,47 @@ import javafx.scene.shape.StrokeLineCap
 object SliderPane: Pane() {
 
     // Defines the height of the slider for calculations
-    val sliderHeight = 25.0
+    const val SLIDERHEIGHT = 25.0
 
     // Sets up the play button and its image
-    var playButton = ToggleButton()
-    var playImage = ImageView()
+    private var playButton = ToggleButton()
+    private var playImage = ImageView()
 
     // Sets up the two possible images for the playImage
-    var playIcon = Image("play-icon.png")
-    var pauseIcon = Image("pause-icon.png")
+    private var playIcon = Image("play-icon.png")
+    private var pauseIcon = Image("pause-icon.png")
 
     // Sets up the slider point and line
-    var sliderPoint = Circle()
-    var sliderLine = Line()
+    private var sliderPoint = Circle()
+    private var sliderLine = Line()
 
     // Sets the property that controls the slider point
     var sliderPointPos: DoubleProperty = SimpleDoubleProperty(120.0)
 
     init {
         // Gets the slider point to the right position and size
-        sliderPoint.centerY = sliderHeight / 2.0
+        sliderPoint.centerY = SLIDERHEIGHT / 2.0
         sliderPoint.centerXProperty().bind(sliderPointPos)
-        sliderPoint.radius = sliderHeight / 1.75
+        sliderPoint.radius = SLIDERHEIGHT / 1.75
         sliderPoint.fill = textColor
 
         // Sets the start of the slider
-        sliderLine.startX = sliderHeight * 2.0
+        sliderLine.startX = SLIDERHEIGHT * 2.0
 
         // Makes sure the slider point is at the beginning of the slider
         sliderPointPos.set(sliderLine.startX)
 
         // Sets the slider to the right place and size
-        sliderLine.startY = sliderHeight / 2.0
-        sliderLine.endX = screenWidth - (sliderHeight / 2.0)
+        sliderLine.startY = SLIDERHEIGHT / 2.0
+        sliderLine.endX = screenWidth - (SLIDERHEIGHT / 2.0)
         sliderLine.endY = sliderLine.startY
-        sliderLine.strokeWidth = sliderHeight / 2.0
+        sliderLine.strokeWidth = SLIDERHEIGHT / 2.0
         sliderLine.strokeLineCap = StrokeLineCap.ROUND
         sliderLine.stroke = mutedTextColor
 
         // Moves the play button to the correct location
-        playButton.layoutX = -(sliderHeight / 7.5)
-        playButton.layoutY = -(sliderHeight / 7.5)
+        playButton.layoutX = -(SLIDERHEIGHT / 7.5)
+        playButton.layoutY = -(SLIDERHEIGHT / 7.5)
 
         // Sets the play button graphic
         playButton.graphic = playImage
@@ -88,7 +88,7 @@ object SliderPane: Pane() {
         }
 
         // Scales the play button image accordingly
-        playImage.fitHeight = sliderHeight
+        playImage.fitHeight = SLIDERHEIGHT
         playImage.fitWidth = playImage.fitHeight
 
         // Adds all children to the slider pane

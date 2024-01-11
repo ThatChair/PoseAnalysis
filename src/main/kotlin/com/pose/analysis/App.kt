@@ -21,7 +21,8 @@ class App : Application() {
         val bgColor: Color = Color.color(BACKGROUNDVALUE / 255, BACKGROUNDVALUE / 255, BACKGROUNDVALUE / 255)
         // The opposite of the background color, for use in text or other nodes that need to be high visibility.
         val textColor: Color = Color.color((255 - BACKGROUNDVALUE) / 255, (255 - BACKGROUNDVALUE) / 255, (255 - BACKGROUNDVALUE) / 255)
-        // A more muted verson of textColor, easy on eyes, good for large text
+
+        // A more muted version of textColor, easy on eyes, good for large text
         val mutedTextColor: Color = Color.color(((255 - BACKGROUNDVALUE) / 255) * 0.5, ((255 - BACKGROUNDVALUE) / 255) * 0.5, ((255 - BACKGROUNDVALUE) / 255) * 0.5)
 
         // Gets the path the application is located, used for finding assets

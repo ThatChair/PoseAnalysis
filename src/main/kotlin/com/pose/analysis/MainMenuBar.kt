@@ -5,6 +5,7 @@ import com.pose.analysis.App.Companion.path
 import com.pose.analysis.App.Companion.smallFont
 import com.pose.analysis.App.Companion.stage
 import com.pose.analysis.App.Companion.textColor
+import com.pose.analysis.ErrorPane.showError
 import com.pose.analysis.MainPane.doneLoading
 import com.pose.analysis.MainPane.startLoading
 import javafx.application.Platform
@@ -30,12 +31,9 @@ object MainMenuBar: MenuBar() {
     private val fileMenuGraphic = Label("File")
     private val fileOpenMenu = Menu("Open")
     private val fileOpenVideoMenuItem = MenuItem("Video")
-    private val fileOpenPoseMenuItem = MenuItem("Pose")
     private val fileOpenAnimationMenuItem = MenuItem("Animation")
     private val fileSettingsMenuItem = MenuItem("Settings")
-    private val fileExportMenu = Menu("Export")
-    private val fileExportVideoMenuItem = MenuItem("Video")
-    private val fileExportAnimationMenuItem = MenuItem("Animation")
+    private val fileExportMenuItem = MenuItem("Export")
 
     // Sets up view menu and all submenus/graphics
     private val viewMenu = Menu("")
@@ -56,23 +54,22 @@ object MainMenuBar: MenuBar() {
         MainMenuBar.background = MainPane.background
 
         fileOpenVideoMenuItem.setOnAction {
-            fileOpenVideoMenuItemFun()
+            loadVideo()
+        }
+
+        fileOpenAnimationMenuItem.setOnAction {
+            importAnimation()
+        }
+
+        fileExportMenuItem.setOnAction {
+            exportAnimation()
         }
 
         // Adds all submenus to the File-Open Menu
         fileOpenMenu.items.addAll(
 
             fileOpenVideoMenuItem,
-            fileOpenPoseMenuItem,
             fileOpenAnimationMenuItem
-
-        )
-
-        // Adds all submenus to the File-Export Menu
-        fileExportMenu.items.addAll(
-
-            fileExportVideoMenuItem,
-            fileExportAnimationMenuItem
 
         )
 
@@ -88,7 +85,7 @@ object MainMenuBar: MenuBar() {
 
             fileOpenMenu,
             fileSettingsMenuItem,
-            fileExportMenu,
+            fileExportMenuItem,
 
         )
 
@@ -131,13 +128,13 @@ object MainMenuBar: MenuBar() {
     }
 
     // Called when the File-Open-Video MenuItem is clicked. Opens the selected file with main.py.
-    private fun fileOpenVideoMenuItemFun() {
+    private fun loadVideo() {
 
         // Sets up the file chooser
         val fileChooser = FileChooser()
 
         // Sets the title of the file chooser
-        fileChooser.title = "Pick a video to analyze"
+        fileChooser.title = "Load Video"
 
         // Makes a filter that only accepts MP4 files
         val extensionFilter = ExtensionFilter("MP4 files (*.mp4)", "*.mp4")
@@ -175,13 +172,13 @@ object MainMenuBar: MenuBar() {
 
                     // Prints an error if an error occurs
                     e.printStackTrace()
-                    println("Error copying the file.")
+                    showError("Error copying the file.")
 
                 }
             } else {
 
                 // Prints if no file is selected. Duh.
-                println("No file selected")
+                showError("No file selected")
 
             }
 
@@ -197,13 +194,6 @@ object MainMenuBar: MenuBar() {
                 // Waits for the process to finish
                 val exitCode = process.waitFor()
 
-                // Read the output of the process
-                val reader = BufferedReader(InputStreamReader(process.inputStream))
-                var line: String?
-                while (reader.readLine().also { line = it } != null) {
-                    println(line)
-                }
-
                 // Capture and print standard error
                 val errorReader = BufferedReader(InputStreamReader(process.errorStream))
                 var errorLine: String?
@@ -215,15 +205,76 @@ object MainMenuBar: MenuBar() {
                 println("Exit Code: $exitCode")
 
             } catch (e: Exception) {
+
                 e.printStackTrace()
             }
 
 
             // Calls the done loading function on the original thread
             Platform.runLater {
-                loadAnimation()
+                loadAnimation("./res/temp/data.json")
                 doneLoading()
             }
+        }
+    }
+
+    // Opens a file chooser and loads an animation from a json file
+    private fun importAnimation() {
+        // Sets up the file chooser
+        val fileChooser = FileChooser()
+
+        // Sets the title of the file chooser
+        fileChooser.title = "Import Animation"
+
+        // Makes a filter that only accepts MP4 files
+        val extensionFilter = ExtensionFilter("JSON files (*.json)", "*.json")
+        // Adds the filter to the file chooser
+        fileChooser.extensionFilters.add(extensionFilter)
+
+        // Opens the file chooser
+        val selectedFile: File? = fileChooser.showOpenDialog(stage)
+
+        if (selectedFile != null) {
+            // Turns off welcome stuff if it's on
+            isWelcome.set(false)
+            startLoading()
+            loadAnimation(selectedFile.path)
+            doneLoading()
+        }
+
+
+    }
+
+    private fun exportAnimation() {
+        val fileChooser = FileChooser()
+        fileChooser.title = "Export Animation"
+
+        // Set initial directory and file name
+        val initialFile = File("./res/temp/data.json")
+        fileChooser.initialFileName = initialFile.name
+        fileChooser.initialDirectory = initialFile.parentFile
+
+        // Set extension filter if needed
+        val jsonExtensionFilter = ExtensionFilter("JSON files (*.json)", "*.json")
+        fileChooser.extensionFilters.add(jsonExtensionFilter)
+
+        // Show save dialog
+        val selectedFile = fileChooser.showSaveDialog(null)
+
+        // If the user selected a file, export the data
+        if (selectedFile != null) {
+            exportData(selectedFile)
+        }
+    }
+
+    private fun exportData(file: File) {
+        val sourcePath: Path = File("./res/temp/data.json").toPath()
+
+        try {
+            Files.copy(sourcePath, file.toPath(), StandardCopyOption.REPLACE_EXISTING)
+            println("File copied successfully.")
+        } catch (e: Exception) {
+            showError("Error copying file: ${e.message}")
         }
     }
 }

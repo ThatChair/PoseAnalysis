@@ -17,9 +17,9 @@ object MainPane: VBox() {
     // Stores the primary screen height for later use
     val screenHeight = screen.visualBounds.height
 
-    val topPane = Pane()
+    private val topPane = Pane()
     val middlePane = Pane()
-    val bottomPane = Pane()
+    private val bottomPane = Pane()
 
     // Sets up the loading gif from the file
     val loadingGif = ImageView("loading.gif")
@@ -54,12 +54,12 @@ object MainPane: VBox() {
         middlePane.children.addAll(
             loadingGif,
             WelcomePane,
-            `3DPane`
+            Pane3D
         )
 
         // Sets preferred and max height for the bottom pane
-        bottomPane.prefHeight = SliderPane.sliderHeight
-        bottomPane.maxHeight = SliderPane.sliderHeight * 2
+        bottomPane.prefHeight = SliderPane.SLIDERHEIGHT
+        bottomPane.maxHeight = SliderPane.SLIDERHEIGHT * 2
 
         // Adds all children to the bottom pane
         bottomPane.children.addAll(
@@ -74,8 +74,6 @@ object MainPane: VBox() {
             bottomPane
 
         )
-
-
     }
 
     // Shows the loading gif
