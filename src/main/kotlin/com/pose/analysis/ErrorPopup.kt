@@ -39,7 +39,9 @@ object ErrorPopup : Popup() {
 
         // When the mouse is clicked, hide the popup
         MainPane.setOnMouseClicked {
-            hideErrorPopup()
+            if (ErrorPopup.isShowing) {
+                hideErrorPopup()
+            }
         }
     }
 

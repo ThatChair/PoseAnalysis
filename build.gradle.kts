@@ -27,6 +27,42 @@ tasks {
     sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }
     from(sourcesMain.output)
   }
+
+  // Add tasks for creating native installers
+  register("createWindowsInstaller") {
+    dependsOn("fatJar")
+    group = "build"
+    description = "Create native installer for Windows using Inno Setup"
+
+    doLast {
+      val innoSetupScript = File(buildDir, "inno-setup-script.iss")
+
+      innoSetupScript.writeText(
+        """
+            [Setup]
+            AppName=PoseAnalysis
+            AppVersion=1.0
+            DefaultDirName={pf}\PoseAnalysis
+            OutputDir=${buildDir}/installers
+            OutputBaseFilename=PoseAnalysisInstaller
+            Compression=lzma2
+            SolidCompression=yes
+
+            [Files]
+            Source: ${buildDir}/libs/JFXBase-all.jar; DestDir: {app}; Flags: ignoreversion
+            ; Add other files or resources as needed
+
+            [Icons]
+            Name: "{group}\PoseAnalysis"; Filename: "{app}\PoseAnalysis.exe"
+        """.trimIndent()
+      )
+
+      val innoSetupCompiler = "C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe" // Set the correct path to ISCC.exe
+      exec {
+        commandLine(innoSetupCompiler, innoSetupScript.absolutePath)
+      }
+    }
+  }
 }
 
 repositories {
@@ -37,7 +73,7 @@ repositories {
 
 javafx {
   version = "19"
-  modules = "javafx.controls,javafx.fxml".split(",").toMutableList()
+  modules = "javafx.controls,javafx.graphics,javafx.base".split(",").toMutableList()
 }
 application {
   mainClass = "com.pose.analysis.Main"
@@ -65,6 +101,30 @@ configure<JavaPluginConvention> {
 
 tasks.withType<KotlinCompile> {
   kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+}
+
+tasks.register<Copy>("copyJars") {
+  from(configurations.runtimeClasspath)
+  into("${buildDir}/libs")
+}
+
+tasks.register<Exec>("jpackage") {
+  dependsOn("copyJars")
+
+  doLast {
+    exec {
+      commandLine(
+        "jpackage",
+        "--input", "${project.buildDir}/jlink",
+        "--main-jar", "${project.buildDir}/libs/${project.name}-${project.version}.jar",
+        "--output", "${project.buildDir}/jpackage",
+        "--name", "YourApp",
+        "--main-class", mainClass,
+        "--type", "exe",
+        "--win-shortcut"
+      )
+    }
+  }
 }
 
 

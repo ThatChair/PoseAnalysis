@@ -15,8 +15,10 @@ import javafx.scene.control.MenuBar
 import javafx.scene.control.MenuItem
 import javafx.stage.FileChooser
 import javafx.stage.FileChooser.ExtensionFilter
+import java.awt.Desktop
 import java.io.BufferedReader
 import java.io.File
+import java.io.IOException
 import java.io.InputStreamReader
 import java.nio.file.Files
 import java.nio.file.Path
@@ -32,19 +34,13 @@ object MainMenuBar: MenuBar() {
     private val fileOpenMenu = Menu("Open")
     private val fileOpenVideoMenuItem = MenuItem("Video")
     private val fileOpenAnimationMenuItem = MenuItem("Animation")
-    private val fileSettingsMenuItem = MenuItem("Settings")
     private val fileExportMenuItem = MenuItem("Export")
-
-    // Sets up view menu and all submenus/graphics
-    private val viewMenu = Menu("")
-    private val viewMenuGraphic = Label("View")
-    private val viewVideoMenuItem = MenuItem("Video")
-    private val view3DPoseMenuItem = MenuItem("3D Pose")
-    private val viewSplitMenuItem = MenuItem("Split")
 
     // Sets up help menu and all submenus/graphics
     private val helpMenu = Menu("")
     private val helpMenuGraphic = Label("Help")
+    private val helpInfoMenuItem = MenuItem("Intro")
+    private val helpReadMeMenuItem = MenuItem("ReadMe")
 //    private val helpSearchMenuItem = MenuItem("Search")
 
     init {
@@ -84,23 +80,8 @@ object MainMenuBar: MenuBar() {
         fileMenu.items.addAll(
 
             fileOpenMenu,
-            fileSettingsMenuItem,
             fileExportMenuItem,
 
-        )
-
-        // Sets the color of the View Menu graphic to the correct color
-        viewMenuGraphic.setColor(textColor)
-        // Sets the font of the View Meny graphic
-        viewMenuGraphic.font = smallFont
-        // Sets the graphic of the View Menu
-        viewMenu.graphic = viewMenuGraphic
-
-        // Adds all submenus to the View Menu
-        viewMenu.items.addAll(
-            viewVideoMenuItem,
-            view3DPoseMenuItem,
-            viewSplitMenuItem
         )
 
         // Sets the color of the Help Menu graphic to the correct color
@@ -110,9 +91,19 @@ object MainMenuBar: MenuBar() {
         // Sets the graphic of the Help Menu
         helpMenu.graphic = helpMenuGraphic
 
+        // Sets the action of both the helpInfoMenuItem and helpReadMeMenuItem
+        helpInfoMenuItem.setOnAction {
+            openMD("INFO.md")
+        }
+        helpReadMeMenuItem.setOnAction {
+            openMD("README.md")
+        }
+
         // Adds all submenus to the Help Menu
         helpMenu.items.addAll(
 
+            helpInfoMenuItem,
+            helpReadMeMenuItem
 //            helpSearchMenuItem
 
         )
@@ -121,7 +112,6 @@ object MainMenuBar: MenuBar() {
         MainMenuBar.menus.addAll(
 
             fileMenu,
-            viewMenu,
             helpMenu
 
         )
@@ -275,6 +265,20 @@ object MainMenuBar: MenuBar() {
             println("File copied successfully.")
         } catch (e: Exception) {
             showError("Error copying file: ${e.message}")
+        }
+    }
+
+    private fun openMD(name: String) {
+        try {
+            val file = File("$path//$name")
+
+            if (file.exists()) {
+                Desktop.getDesktop().open(file)
+            } else {
+                showError("File not found: $path$name")
+            }
+        } catch (e: IOException) {
+            showError("Error opening file: $e")
         }
     }
 }
