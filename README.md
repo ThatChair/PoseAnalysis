@@ -19,17 +19,14 @@ If you choose to install the universal JAR, you need to have Java 17 installed.
 
 To install, simply pick which version you wish from releases on the left.
 
-For the .ZIP releases, you need to simply unzip the file in the place you wish, then the app should work. Just double-click the PoseAnalysis.JAR file to run.
-
-For the .EXE releases (Only for windows), you double click the downloaded EXE file, follow the instructions, then double click PoseAnalysis.EXE in the location you specified
-
+Once you pick a release, you need to simply unzip the file in the place you wish, then the app should work. Just
+double-click the PoseAnalysis.JAR or PoseAnalysis.EXE file to run.
 ## Built With
 
 * [JavaFX](https://openjfx.io/) - The UI library behind the app
 * [Google Mediapipe](https://developers.google.com/mediapipe) - The AI Pose Analysis powering the app
 * [Gradle](https://gradle.org/) - Dependency Management
 * [Launch4J](https://launch4j.sourceforge.net/index.html) - JAR-EXE wrapper
-* [InnoSetup](https://jrsoftware.org/) -  Used to make the windows installer
 
 ## License
 

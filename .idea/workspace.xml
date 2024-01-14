@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="Added exporting and importing json files. Also added error handling">
+    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="added packaging crap and help-&gt; info and help _. readme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/ErrorPopup.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/ErrorPopup.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +129,7 @@
       <recent name="com.pose.analysis" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PoseAnalysis [run]">
+  <component name="RunManager" selected="Gradle.PoseAnalysis [fatJar]">
     <configuration name="PoseAnalysis [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -251,9 +249,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PoseAnalysis [fatJar]" />
         <item itemvalue="Gradle.PoseAnalysis [run]" />
         <item itemvalue="Gradle.PoseAnalysis [jpackage]" />
-        <item itemvalue="Gradle.PoseAnalysis [fatJar]" />
         <item itemvalue="Gradle.PoseAnalysis [installDist]" />
         <item itemvalue="Gradle.PoseAnalysis [assemble]" />
       </list>
@@ -370,7 +368,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704936456113</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added packaging crap and help-&gt; info and help _. readme">
+      <option name="closed" value="true" />
+      <created>1705254406432</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1705254406433</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -387,7 +393,8 @@
     <MESSAGE value="Got Full 3d Visualization Working!!!" />
     <MESSAGE value="Removed Help -&gt; Search" />
     <MESSAGE value="Added exporting and importing json files. Also added error handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added exporting and importing json files. Also added error handling" />
+    <MESSAGE value="added packaging crap and help-&gt; info and help _. readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="added packaging crap and help-&gt; info and help _. readme" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
