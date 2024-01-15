@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="added packaging crap and help-&gt; info and help _. readme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Pane3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Pane3D.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,33 +87,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build PoseAnalysis.executor": "Run",
-    "Gradle.PoseAnalysis [assemble].executor": "Run",
-    "Gradle.PoseAnalysis [createInstaller].executor": "Run",
-    "Gradle.PoseAnalysis [createWindowsInstaller].executor": "Run",
-    "Gradle.PoseAnalysis [fatJar].executor": "Run",
-    "Gradle.PoseAnalysis [installDist].executor": "Run",
-    "Gradle.PoseAnalysis [jpackage].executor": "Run",
-    "Gradle.PoseAnalysis [run].executor": "Run",
-    "Kotlin.Main$Companion.executor": "Run",
-    "Kotlin.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-17",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/teamm/IdeaProjects/PoseAnalysis/build/generated/source/buildConfig/main/main",
-    "last_opened_file_path": "C:/Users/teamm/IdeaProjects/PoseAnalysis/src/main/resources",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build PoseAnalysis.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PoseAnalysis [assemble].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PoseAnalysis [createInstaller].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PoseAnalysis [createWindowsInstaller].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PoseAnalysis [fatJar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PoseAnalysis [installDist].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PoseAnalysis [jpackage].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PoseAnalysis [run].executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.Main$Companion.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/teamm/IdeaProjects/PoseAnalysis/build/generated/source/buildConfig/main/main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/teamm/IdeaProjects/PoseAnalysis/src/main/resources&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\src\main\resources" />
@@ -129,7 +129,7 @@
       <recent name="com.pose.analysis" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PoseAnalysis [fatJar]">
+  <component name="RunManager" selected="Gradle.PoseAnalysis [run]">
     <configuration name="PoseAnalysis [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -249,8 +249,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.PoseAnalysis [fatJar]" />
         <item itemvalue="Gradle.PoseAnalysis [run]" />
+        <item itemvalue="Gradle.PoseAnalysis [fatJar]" />
         <item itemvalue="Gradle.PoseAnalysis [jpackage]" />
         <item itemvalue="Gradle.PoseAnalysis [installDist]" />
         <item itemvalue="Gradle.PoseAnalysis [assemble]" />

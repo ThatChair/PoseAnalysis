@@ -112,15 +112,15 @@ object Pane3D : Pane() {
             lastY = event.sceneY
         }
 
-        // Handles zooming
+        // Handles touchscreen zooming
         Pane3D.setOnZoom { event ->
             zoom *= event.zoomFactor
             render(currentFrame, zoom)
         }
 
-        // Also handles zooming
+        // Handles trackpad/scroll zooming
         Pane3D.setOnScroll { event ->
-            zoom += event.deltaX
+            zoom += event.deltaX + event.deltaY
             render(currentFrame, zoom)
         }
     }
