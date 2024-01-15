@@ -13,7 +13,7 @@ object WelcomePane: StackPane() {
     // Sets up the 4 lines of the main welcome text
     private val welcomeText = Label("Welcome to PoseAnalysis!")
     private val helpText = Label("For a tutorial, click Help -> Intro")
-    private val startText = Label("To get started, click File -> Open, then choose Video, Pose, or Animation")
+    private val startText = Label("To get started, click File -> Open, then choose Video or Animation")
     private val infoText = Label("For more information, click Help -> ReadMe")
 
     init {
