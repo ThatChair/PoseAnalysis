@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="added packaging crap and help-&gt; info and help _. readme">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Pane3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Pane3D.kt" afterDir="false" />
+    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="fixed zooming for touchpad and scroll wheel">
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/WelcomePane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/WelcomePane.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -376,7 +375,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705254406433</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fixed zooming for touchpad and scroll wheel">
+      <option name="closed" value="true" />
+      <created>1705302020428</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1705302020428</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -394,7 +401,8 @@
     <MESSAGE value="Removed Help -&gt; Search" />
     <MESSAGE value="Added exporting and importing json files. Also added error handling" />
     <MESSAGE value="added packaging crap and help-&gt; info and help _. readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="added packaging crap and help-&gt; info and help _. readme" />
+    <MESSAGE value="fixed zooming for touchpad and scroll wheel" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed zooming for touchpad and scroll wheel" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

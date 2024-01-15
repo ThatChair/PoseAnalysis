@@ -150,7 +150,7 @@ object Pane3D : Pane() {
         for (i in renderList.indices) {
             val dot = Circle()
             dot.fill = textColor
-            dot.radius = dotSizes[i].remap(minDist, maxDist, minDotSize, maxDotSize)
+            dot.radius = dotSizes[i].remap(minDist, maxDist, minDotSize, maxDotSize) * scale * 0.005
             dot.centerX = renderList[i][0] * scale
             dot.centerY = renderList[i][1] * scale
             Pane3D.children.add(
