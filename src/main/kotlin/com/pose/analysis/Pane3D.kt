@@ -64,6 +64,9 @@ object Pane3D : Pane() {
 
     // Stores the zoom level
     var zoom = 200.0
+        set(value) {
+            field = if (value > 0) value else 0.0
+        }
 
 
     // Stores the previous mouse x and y coordinates so the x and y angles are incremented
