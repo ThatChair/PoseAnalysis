@@ -1,14 +1,13 @@
-import json
-import sys
-
 import cv2
+import json
 import mediapipe as mp
+import sys
 
 
 def process_video(input_video_path, output_json_path, model_complexity):
     # Initialize MediaPipe Pose
     mp_pose = mp.solutions.pose
-    pose = mp_pose.Pose(model_complexity=model_complexity)
+    pose = mp_pose.Pose(model_complexity=model_complexity, use_gpu=True)
 
     # Open video file
     cap = cv2.VideoCapture(input_video_path)
@@ -63,7 +62,7 @@ def process_video(input_video_path, output_json_path, model_complexity):
 
 cwd = sys.argv[1]
 
-input_path = cwd + "\\res\\temp\\vid.mp4"
+input_path = sys.argv[2]
 
 output_path = cwd + "\\res\\temp\\data.json"
 try:

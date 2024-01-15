@@ -120,6 +120,8 @@ object MainMenuBar: MenuBar() {
     // Called when the File-Open-Video MenuItem is clicked. Opens the selected file with main.py.
     private fun loadVideo() {
 
+        val startTime = System.currentTimeMillis()
+
         // Sets up the file chooser
         val fileChooser = FileChooser()
 
@@ -146,65 +148,47 @@ object MainMenuBar: MenuBar() {
                     startLoading()
                 }
 
-                // Sets the destination and desired file name for copying
-                val destinationDirectory = File("$path\\res\\temp")
-                val newFileName = "vid.mp4"
+                // Defines the path to the python script that analyzes the copied file
+                val pythonScript = /*if (isRunningFromJar()) "$path\\python\\main.py" else */
+                    "$path\\src\\main\\python\\main.py"
 
                 try {
-                    // Sets the destination path with the destination directory and new file name
-                    val destinationPath: Path = destinationDirectory.toPath().resolve(newFileName)
 
-                    // Copies the file to the destination
-                    Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING)
-                    println("File copied and renamed to: ${destinationPath.toAbsolutePath()}")
+                    // Creates and starts the process to run the python script with a command
+                    val processBuilder = ProcessBuilder(listOf("python", pythonScript, path, selectedFile.path))
+                    val process = processBuilder.start()
+
+                    // Waits for the process to finish
+                    val exitCode = process.waitFor()
+
+                    // Capture and print standard error
+                    val errorReader = BufferedReader(InputStreamReader(process.errorStream))
+                    var errorLine: String?
+                    while (errorReader.readLine().also { errorLine = it } != null) {
+                        System.err.println(errorLine)
+                    }
+
+                    // Print the exit code
+                    println("Exit Code: $exitCode")
 
                 } catch (e: Exception) {
 
-                    // Prints an error if an error occurs
                     e.printStackTrace()
-                    showError("Error copying the file.")
+                }
 
+                loadAnimation("./res/temp/data.json")
+
+                // Calls the done loading function on the original thread
+                Platform.runLater {
+                    Pane3D.render(currentFrame, Pane3D.zoom)
+                    doneLoading()
+                    println("Loaded in ${System.currentTimeMillis() - startTime}ms")
                 }
             } else {
 
                 // Prints if no file is selected. Duh.
                 showError("No file selected")
 
-            }
-
-            // Defines the path to the python script that analyzes the copied file
-            val pythonScript = if (isRunningFromJar()) "$path\\python\\main.py" else "$path\\src\\main\\python\\main.py"
-
-            try {
-
-                // Creates and starts the process to run the python script with a command
-                val processBuilder = ProcessBuilder(listOf("python", pythonScript, path))
-                val process = processBuilder.start()
-
-                // Waits for the process to finish
-                val exitCode = process.waitFor()
-
-                // Capture and print standard error
-                val errorReader = BufferedReader(InputStreamReader(process.errorStream))
-                var errorLine: String?
-                while (errorReader.readLine().also { errorLine = it } != null) {
-                    System.err.println(errorLine)
-                }
-
-                // Print the exit code
-                println("Exit Code: $exitCode")
-
-            } catch (e: Exception) {
-
-                e.printStackTrace()
-            }
-
-            loadAnimation("./res/temp/data.json")
-
-            // Calls the done loading function on the original thread
-            Platform.runLater {
-                Pane3D.render(currentFrame, Pane3D.zoom)
-                doneLoading()
             }
         }
     }

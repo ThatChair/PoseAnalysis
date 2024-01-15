@@ -13,6 +13,8 @@ import org.jetbrains.kotlinx.multik.ndarray.data.D1Array
 import java.io.File
 import kotlin.properties.Delegates
 
+lateinit var videoPath: String
+
 // BooleanProperty to keep track when WelcomePane should be displayed
 var isWelcome: BooleanProperty = SimpleBooleanProperty(true)
 
