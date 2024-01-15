@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="fixed zooming for touchpad and scroll wheel">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/WelcomePane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/WelcomePane.kt" afterDir="false" />
+    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="fixed negative zooming">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/AnimationManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/AnimationManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -383,7 +385,31 @@
       <option name="project" value="LOCAL" />
       <updated>1705302020428</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="updated start text">
+      <option name="closed" value="true" />
+      <created>1705302140158</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1705302140158</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fixed dots not zooming correctly with the rest of the pose">
+      <option name="closed" value="true" />
+      <created>1705302429393</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1705302429393</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fixed negative zooming">
+      <option name="closed" value="true" />
+      <created>1705302515511</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1705302515512</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -402,7 +428,10 @@
     <MESSAGE value="Added exporting and importing json files. Also added error handling" />
     <MESSAGE value="added packaging crap and help-&gt; info and help _. readme" />
     <MESSAGE value="fixed zooming for touchpad and scroll wheel" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed zooming for touchpad and scroll wheel" />
+    <MESSAGE value="updated start text" />
+    <MESSAGE value="fixed dots not zooming correctly with the rest of the pose" />
+    <MESSAGE value="fixed negative zooming" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed negative zooming" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

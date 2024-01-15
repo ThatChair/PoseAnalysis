@@ -199,10 +199,11 @@ object MainMenuBar: MenuBar() {
                 e.printStackTrace()
             }
 
+            loadAnimation("./res/temp/data.json")
 
             // Calls the done loading function on the original thread
             Platform.runLater {
-                loadAnimation("./res/temp/data.json")
+                Pane3D.render(currentFrame, Pane3D.zoom)
                 doneLoading()
             }
         }
@@ -226,10 +227,17 @@ object MainMenuBar: MenuBar() {
 
         if (selectedFile != null) {
             // Turns off welcome stuff if it's on
-            isWelcome.set(false)
-            startLoading()
-            loadAnimation(selectedFile.path)
-            doneLoading()
+            thread {
+                Platform.runLater {
+                    isWelcome.set(false)
+                    startLoading()
+                }
+                loadAnimation(selectedFile.path)
+                Platform.runLater {
+                    Pane3D.render(currentFrame, Pane3D.zoom)
+                    doneLoading()
+                }
+            }
         }
 
 

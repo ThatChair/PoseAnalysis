@@ -127,9 +127,6 @@ fun loadAnimation(path: String) {
             // Sets the total number of frames
             frameNumber = SimpleIntegerProperty(animation.size)
 
-            // Renders the new animation
-            render(currentFrame, zoom)
-
         } else {
             // Shows an error if there is no fps
             showError(
