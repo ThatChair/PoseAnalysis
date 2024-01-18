@@ -27,42 +27,6 @@ tasks {
     sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }
     from(sourcesMain.output)
   }
-
-  // Add tasks for creating native installers
-  register("createWindowsInstaller") {
-    dependsOn("fatJar")
-    group = "build"
-    description = "Create native installer for Windows using Inno Setup"
-
-    doLast {
-      val innoSetupScript = File(buildDir, "inno-setup-script.iss")
-
-      innoSetupScript.writeText(
-        """
-            [Setup]
-            AppName=PoseAnalysis
-            AppVersion=1.0
-            DefaultDirName={pf}\PoseAnalysis
-            OutputDir=${buildDir}/installers
-            OutputBaseFilename=PoseAnalysisInstaller
-            Compression=lzma2
-            SolidCompression=yes
-
-            [Files]
-            Source: ${buildDir}/libs/JFXBase-all.jar; DestDir: {app}; Flags: ignoreversion
-            ; Add other files or resources as needed
-
-            [Icons]
-            Name: "{group}\PoseAnalysis"; Filename: "{app}\PoseAnalysis.exe"
-        """.trimIndent()
-      )
-
-      val innoSetupCompiler = "C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe" // Set the correct path to ISCC.exe
-      exec {
-        commandLine(innoSetupCompiler, innoSetupScript.absolutePath)
-      }
-    }
-  }
 }
 
 repositories {

@@ -121,7 +121,6 @@ object MainMenuBar: MenuBar() {
     private fun loadVideo() {
 
         val startTime = System.currentTimeMillis()
-
         // Sets up the file chooser
         val fileChooser = FileChooser()
 
@@ -149,13 +148,15 @@ object MainMenuBar: MenuBar() {
                 }
 
                 // Defines the path to the python script that analyzes the copied file
-                val pythonScript = /*if (isRunningFromJar()) "$path\\python\\main.py" else */
-                    "$path\\src\\main\\python\\main.py"
+                val pythonScript =
+                    if (isRunningFromJar()) "$path\\python\\main.py" else "$path\\src\\main\\python\\main.py"
 
                 try {
 
+                    val command = listOf("python", pythonScript, path, selectedFile.path)
+
                     // Creates and starts the process to run the python script with a command
-                    val processBuilder = ProcessBuilder(listOf("python", pythonScript, path, selectedFile.path))
+                    val processBuilder = ProcessBuilder(command)
                     val process = processBuilder.start()
 
                     // Waits for the process to finish
@@ -166,14 +167,18 @@ object MainMenuBar: MenuBar() {
                     var errorLine: String?
                     while (errorReader.readLine().also { errorLine = it } != null) {
                         System.err.println(errorLine)
+                        Platform.runLater {
+                            errorLine?.let { showError("", errorLine.toString()) }
+                        }
                     }
 
                     // Print the exit code
                     println("Exit Code: $exitCode")
 
                 } catch (e: Exception) {
-
-                    e.printStackTrace()
+                    Platform.runLater {
+                        e.message?.let { showError("", it) }
+                    }
                 }
 
                 loadAnimation("./res/temp/data.json")

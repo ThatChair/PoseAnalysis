@@ -7,7 +7,7 @@ import sys
 def process_video(input_video_path, output_json_path, model_complexity):
     # Initialize MediaPipe Pose
     mp_pose = mp.solutions.pose
-    pose = mp_pose.Pose(model_complexity=model_complexity, use_gpu=True)
+    pose = mp_pose.Pose(model_complexity=model_complexity, )
 
     # Open video file
     cap = cv2.VideoCapture(input_video_path)
@@ -65,7 +65,5 @@ cwd = sys.argv[1]
 input_path = sys.argv[2]
 
 output_path = cwd + "\\res\\temp\\data.json"
-try:
-    process_video(input_path, output_path, 2)
-except Exception:
-    print(Exception)
+
+process_video(input_path, output_path, 2)
