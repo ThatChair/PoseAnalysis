@@ -153,7 +153,7 @@ object MainMenuBar: MenuBar() {
 
                 try {
 
-                    val command = listOf("python", pythonScript, path, selectedFile.path)
+                    val command = listOf("python3.11", pythonScript, path, selectedFile.path)
 
                     // Creates and starts the process to run the python script with a command
                     val processBuilder = ProcessBuilder(command)
