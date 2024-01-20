@@ -153,27 +153,39 @@ object MainMenuBar: MenuBar() {
 
                 try {
 
-                    val command = listOf("python3.11", pythonScript, path, selectedFile.path)
+                    var process = ProcessBuilder("where", "python3.11").start()
+                    val inputStream = process.inputStream
+                    val bufferedReader = BufferedReader(InputStreamReader(inputStream))
 
-                    // Creates and starts the process to run the python script with a command
-                    val processBuilder = ProcessBuilder(command)
-                    val process = processBuilder.start()
+                    // Read the output of the command
+                    val output = bufferedReader.readLine()
 
-                    // Waits for the process to finish
-                    val exitCode = process.waitFor()
+                    if (output != null) {
+                        println(output)
+                        val command = listOf(output, pythonScript, path, selectedFile.path)
 
-                    // Capture and print standard error
-                    val errorReader = BufferedReader(InputStreamReader(process.errorStream))
-                    var errorLine: String?
-                    while (errorReader.readLine().also { errorLine = it } != null) {
-                        System.err.println(errorLine)
-                        Platform.runLater {
-                            errorLine?.let { showError("", errorLine.toString()) }
+                        // Creates and starts the process to run the python script with a command
+                        val processBuilder = ProcessBuilder(command)
+                        process = processBuilder.start()
+
+                        // Waits for the process to finish
+                        val exitCode = process.waitFor()
+
+                        // Capture and print standard error
+                        val errorReader = BufferedReader(InputStreamReader(process.errorStream))
+                        var errorLine: String?
+                        while (errorReader.readLine().also { errorLine = it } != null) {
+                            System.err.println(errorLine)
+                            Platform.runLater {
+                                errorLine?.let { showError("", errorLine.toString()) }
+                            }
                         }
-                    }
 
-                    // Print the exit code
-                    println("Exit Code: $exitCode")
+                        // Print the exit code
+                        println("Exit Code: $exitCode")
+                    } else {
+                        showError("Cannot find Python 3.11", "Check that Python 3.11 is installed correctly")
+                    }
 
                 } catch (e: Exception) {
                     Platform.runLater {
