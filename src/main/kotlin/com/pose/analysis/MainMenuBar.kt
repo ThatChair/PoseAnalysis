@@ -120,7 +120,6 @@ object MainMenuBar: MenuBar() {
     // Called when the File-Open-Video MenuItem is clicked. Opens the selected file with main.py.
     private fun loadVideo() {
 
-        val startTime = System.currentTimeMillis()
         // Sets up the file chooser
         val fileChooser = FileChooser()
 
@@ -184,12 +183,14 @@ object MainMenuBar: MenuBar() {
                         // Print the exit code
                         println("Exit Code: $exitCode")
                     } else {
-                        showError("Cannot find Python 3.11", "Check that Python 3.11 is installed correctly")
+                        Platform.runLater {
+                            showError("Cannot find Python 3.11", "Check that Python 3.11 is installed correctly")
+                        }
                     }
 
                 } catch (e: Exception) {
                     Platform.runLater {
-                        e.message?.let { showError("", it) }
+                        showError("Cannot run python script", (e.message ?: "") + (e.cause?.message ?: ""))
                     }
                 }
 
@@ -199,7 +200,6 @@ object MainMenuBar: MenuBar() {
                 Platform.runLater {
                     Pane3D.render(currentFrame, Pane3D.zoom)
                     doneLoading()
-                    println("Loaded in ${System.currentTimeMillis() - startTime}ms")
                 }
             } else {
 
