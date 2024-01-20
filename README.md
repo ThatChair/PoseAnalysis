@@ -2,8 +2,9 @@
 
 ![image](https://github.com/ThatChair/PoseAnalysis/assets/68354875/b726f0fe-68f7-4e8e-bb24-29b1b0a0d896)
 
-
-Welcome to PoseAnalysis! This app is been designed for athletes across various disciplines. With the ability to upload and analyze 3D videos of your performance, PoseAnalysis offers a solution for refining techniques, adjusting movements, and coaching. While tailored for tennis and volleyball players, this app can work for a wide range of athletic endeavors.
+Welcome to PoseAnalysis! With the ability to upload and analyze 3D videos of your performance, PoseAnalysis offers a
+solution for refining techniques, adjusting movements, and coaching. While tailored for tennis and volleyball players,
+this app can work for a wide range of athletic endeavors.
 
 ## Getting Started
 
@@ -13,7 +14,16 @@ The following instructions should get you set up with an installation of the app
 
 ### Prerequisites
 
-If you choose to install the universal JAR, you need to have Java 17 installed.
+**This app works with Python 3.11 ONLY! (No other versions)**
+
+- Install Java from [here](https://www.java.com/en/download/)
+- Install Python 3.11 from the bottom of [this page](https://www.python.org/downloads/release/python-3117/)
+- Run the following commands:
+
+```
+    python3.11 -m pip install opencv-python
+    python3.11 -m pip install mediapipe
+```
 
 ### Installing
 

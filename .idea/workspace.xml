@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="removed unused gradle task, removed broken hardware acceleration, fixed broken python script calling, and added better python error handling">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" afterDir="false" />
+    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="made sure python is using the right version.">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -417,7 +416,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705559862894</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="made sure python is using the right version.">
+      <option name="closed" value="true" />
+      <created>1705729127201</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1705729127201</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -441,7 +448,8 @@
     <MESSAGE value="fixed negative zooming" />
     <MESSAGE value="fixed loading animation not showing up when loading animation" />
     <MESSAGE value="removed unused gradle task, removed broken hardware acceleration, fixed broken python script calling, and added better python error handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed unused gradle task, removed broken hardware acceleration, fixed broken python script calling, and added better python error handling" />
+    <MESSAGE value="made sure python is using the right version." />
+    <option name="LAST_COMMIT_MESSAGE" value="made sure python is using the right version." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
