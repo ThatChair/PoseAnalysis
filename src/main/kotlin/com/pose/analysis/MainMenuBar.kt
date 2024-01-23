@@ -120,6 +120,8 @@ object MainMenuBar: MenuBar() {
     // Called when the File-Open-Video MenuItem is clicked. Opens the selected file with main.py.
     private fun loadVideo() {
 
+        println("Loading video")
+
         // Sets up the file chooser
         val fileChooser = FileChooser()
 
@@ -139,6 +141,8 @@ object MainMenuBar: MenuBar() {
             // Checks if there is a selected file
             if (selectedFile != null) {
 
+                println("Successfully selected file")
+
                 // Calls the start loading function on the original thread
                 Platform.runLater {
                     // Turns off welcome stuff if it's on
@@ -148,9 +152,11 @@ object MainMenuBar: MenuBar() {
 
                 // Defines the path to the python script that analyzes the copied file
                 val pythonScript =
-                    if (isRunningFromJar()) "$path\\python\\main.py" else "$path\\src\\main\\python\\main.py"
+                    if (isRunningFromJar) "$path\\python\\main.py" else "$path\\src\\main\\python\\main.py"
 
                 try {
+
+                    println("Running python from: $pythonScript")
 
                     var process = ProcessBuilder("where", "python3.11").start()
                     val inputStream = process.inputStream
@@ -160,7 +166,9 @@ object MainMenuBar: MenuBar() {
                     val output = bufferedReader.readLine()
 
                     if (output != null) {
+
                         println(output)
+
                         val command = listOf(output, pythonScript, path, selectedFile.path)
 
                         // Creates and starts the process to run the python script with a command
@@ -212,6 +220,9 @@ object MainMenuBar: MenuBar() {
 
     // Opens a file chooser and loads an animation from a json file
     private fun importAnimation() {
+
+        println("Loading animation")
+
         // Sets up the file chooser
         val fileChooser = FileChooser()
 
@@ -227,6 +238,9 @@ object MainMenuBar: MenuBar() {
         val selectedFile: File? = fileChooser.showOpenDialog(stage)
 
         if (selectedFile != null) {
+
+            println("Successfully selected animation")
+
             // Turns off welcome stuff if it's on
             thread {
                 Platform.runLater {
@@ -245,6 +259,9 @@ object MainMenuBar: MenuBar() {
     }
 
     private fun exportAnimation() {
+
+        println("Exporting animation")
+
         val fileChooser = FileChooser()
         fileChooser.title = "Export Animation"
 
@@ -267,6 +284,9 @@ object MainMenuBar: MenuBar() {
     }
 
     private fun exportData(file: File) {
+
+        println("Exporting data to $file")
+
         val sourcePath: Path = File("./res/temp/data.json").toPath()
 
         try {
@@ -278,6 +298,9 @@ object MainMenuBar: MenuBar() {
     }
 
     private fun openMD(name: String) {
+
+        println("Opening MD file at $name")
+
         try {
             val file = File("$path//$name")
 

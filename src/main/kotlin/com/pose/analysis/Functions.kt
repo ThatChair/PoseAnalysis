@@ -1,5 +1,7 @@
 package com.pose.analysis
 
+import com.pose.analysis.App.Companion.logString
+import com.pose.analysis.App.Companion.path
 import com.pose.analysis.SliderPane.sliderPointPos
 import javafx.scene.control.Label
 import javafx.scene.input.MouseButton
@@ -13,8 +15,25 @@ import org.jetbrains.kotlinx.multik.ndarray.data.D1
 import org.jetbrains.kotlinx.multik.ndarray.data.D1Array
 import org.jetbrains.kotlinx.multik.ndarray.data.NDArray
 import org.jetbrains.kotlinx.multik.ndarray.data.get
+import java.io.File
+import java.time.Instant
+import java.time.ZoneId
 import kotlin.math.cos
 import kotlin.math.sin
+
+fun println(out: Any) {
+    val text = out.toString()
+    logString += text + "\n"
+    kotlin.io.println(text)
+}
+
+fun writeLogFile() {
+    val logFile = File("${path}\\logs\\log-${getTime()}.txt")
+    if (!logFile.exists()) {
+        logFile.createNewFile()
+    }
+    logFile.writeText(logString)
+}
 
 // Sets the color of a label
 fun Label.setColor(color: Color): Label {
@@ -42,7 +61,8 @@ fun Double.remap(fromRangeStart: Double, fromRangeEnd: Double, toRangeStart: Dou
 }
 
 // Determines if the app is running from intellij or a JAR
-fun isRunningFromJar(): Boolean {
+val isRunningFromJar: Boolean
+    get() {
     // Gets the class name
     val className = App::class.java.name.replace(".", "/") + ".class"
 
@@ -201,4 +221,9 @@ fun Array<D1Array<Double>>.centerPointsAtOrigin(): Array<D1Array<Double>> {
         val centeredZ = point[2] - meanZ
         mk.ndarray(mk[centeredX, centeredY, centeredZ])
     }.toTypedArray()
+}
+
+fun getTime(): String {
+    return Instant.now().atZone(ZoneId.systemDefault()).toString().replace(":", "-")
+        .removeSuffix("[${ZoneId.systemDefault()}]").dropLast(16)
 }

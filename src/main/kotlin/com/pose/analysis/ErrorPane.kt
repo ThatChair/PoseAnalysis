@@ -58,5 +58,7 @@ object ErrorPane : TextFlow() {
 
         // Calls the function to display the popup
         showErrorPopup()
+
+        writeLogFile()
     }
 }

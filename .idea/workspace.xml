@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="improved python script error handling">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="fixed loading animation not hiding when error occurs">
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/AnimationManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/AnimationManager.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/App.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/ErrorPane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/ErrorPane.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Functions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Functions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,11 +126,11 @@
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\src\main\kotlin\com\example\jfxbase" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis" />
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\build\libs" />
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\build\installers" />
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\src\main\resources" />
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\src\main\python" />
-      <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.pose.analysis" />
@@ -444,7 +444,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705790860975</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fixed loading animation not hiding when error occurs">
+      <option name="closed" value="true" />
+      <created>1705973382427</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1705973382427</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -471,7 +479,8 @@
     <MESSAGE value="made sure python is using the right version." />
     <MESSAGE value="updated README.md" />
     <MESSAGE value="improved python script error handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved python script error handling" />
+    <MESSAGE value="fixed loading animation not hiding when error occurs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed loading animation not hiding when error occurs" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

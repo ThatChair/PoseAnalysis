@@ -35,6 +35,8 @@ class App : Application() {
         // Load the TTF file
         val largeFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 100.0)
 
+        var logString: String = ""
+
         @JvmStatic
         // Called upon startup of the application
         fun main(args: Array<String>) {
