@@ -58,11 +58,6 @@ java {
   withJavadocJar()
 }
 
-configure<JavaPluginConvention> {
-  sourceCompatibility = JavaVersion.VERSION_17
-  targetCompatibility = JavaVersion.VERSION_17
-}
-
 tasks.withType<KotlinCompile> {
   kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
 }
@@ -70,25 +65,6 @@ tasks.withType<KotlinCompile> {
 tasks.register<Copy>("copyJars") {
   from(configurations.runtimeClasspath)
   into("${buildDir}/libs")
-}
-
-tasks.register<Exec>("jpackage") {
-  dependsOn("copyJars")
-
-  doLast {
-    exec {
-      commandLine(
-        "jpackage",
-        "--input", "${project.buildDir}/jlink",
-        "--main-jar", "${project.buildDir}/libs/${project.name}-${project.version}.jar",
-        "--output", "${project.buildDir}/jpackage",
-        "--name", "YourApp",
-        "--main-class", mainClass,
-        "--type", "exe",
-        "--win-shortcut"
-      )
-    }
-  }
 }
 
 
