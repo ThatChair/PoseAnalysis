@@ -15,7 +15,7 @@ class App : Application() {
     companion object {
 
         // Defines the version of the application
-        val version = "v1.0.4-Dev"
+        val version = "v1.0.4"
 
         // Sets up the stage, the top level container that contains the entire application
         lateinit var stage: Stage
