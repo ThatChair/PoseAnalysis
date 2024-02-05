@@ -49,8 +49,6 @@ dependencies {
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
   implementation("org.jetbrains.kotlin:kotlin-stdlib")
   implementation("com.google.code.gson:gson:2.8.9")
-    implementation("org.jetbrains.kotlinx:multik-core:0.2.2")
-    implementation("org.jetbrains.kotlinx:multik-default:0.2.2")
 }
 
 java {
