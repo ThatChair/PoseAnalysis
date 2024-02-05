@@ -5,12 +5,11 @@ import com.google.gson.JsonElement
 import com.pose.analysis.ErrorPane.showError
 import com.pose.analysis.Pane3D.render
 import com.pose.analysis.Pane3D.zoom
+import com.pose.analysis.math.Wireframe3D
 import javafx.animation.AnimationTimer
 import javafx.application.Platform
 import javafx.beans.property.*
-import org.jetbrains.kotlinx.multik.api.mk
-import org.jetbrains.kotlinx.multik.api.ndarray
-import org.jetbrains.kotlinx.multik.ndarray.data.D1Array
+import javafx.geometry.Point3D
 import java.io.File
 import kotlin.properties.Delegates
 
@@ -21,9 +20,8 @@ var isWelcome: BooleanProperty = SimpleBooleanProperty(true)
 // BooleanProperty to keep track when an animation is playing
 var isAnimationPlaying: BooleanProperty = SimpleBooleanProperty(false)
 
-// Saves the loaded animation, an array of frames which are arrays of points which are arrays of coordinates.
-// Lots of arrays lol
-lateinit var animation: Array<Array<D1Array<Double>>>
+// Saves the loaded animation, an array of wireframes
+lateinit var animation: Array<Wireframe3D>
 
 // I do not remember what this does :(
 var fps by Delegates.notNull<Double>()
@@ -74,7 +72,7 @@ val animationTimer = object : AnimationTimer() {
     }
 }
 
-// Just gets the current frame. What else would it do?
+// Just gets the current frame number. What else would it do?
 val currentFrame: Int
     get() = (animPercent.get() * (frameNumber.get())).toInt()
 
@@ -82,8 +80,10 @@ val currentFrame: Int
 // Loads an animation from the json file at the given path and updates the animation variable accordingly
 fun loadAnimation(path: String) {
 
+    // Debugging print for log file
     println("Loading animation from $path")
 
+    //Reads the json string from the inputted path
     val jsonString = File(path).readText()
 
     // Create a Gson instance
@@ -124,9 +124,9 @@ fun loadAnimation(path: String) {
 
             // Maps animation to the result
             animation = result.map { frame ->
-                frame.map {
-                    mk.ndarray(mk[it[0], it[1], it[2]])
-                }.toTypedArray()
+                Wireframe3D(frame.map {
+                    Point3D(it[0], it[1], it[2])
+                }.toTypedArray())
             }.toTypedArray()
 
             // Sets the total number of frames

@@ -3,18 +3,15 @@ package com.pose.analysis
 import com.pose.analysis.App.Companion.textColor
 import com.pose.analysis.MainPane.middlePane
 import javafx.beans.binding.Bindings
+import javafx.geometry.Point3D
 import javafx.scene.layout.Pane
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Line
-import org.jetbrains.kotlinx.multik.api.mk
-import org.jetbrains.kotlinx.multik.api.ndarray
-import org.jetbrains.kotlinx.multik.ndarray.data.get
-import kotlin.math.pow
-import kotlin.math.sqrt
 
 object Pane3D : Pane() {
 
-    // Standard mediapipe without the head...
+
+    // Standard mediapipe connections without the head...
     // This sets up the lines connecting the dots of the 3D render.
     // Each array is the connections for the dot at that index (i.e. index on connects to index 12, 13, & 23)
     // The first couple are commented out because the head is not rendered
@@ -55,12 +52,16 @@ object Pane3D : Pane() {
     )
 
     // Specifies the camera position and the screen position in 3d space
-    private val cameraPos = mk.ndarray(mk[0.0, 0.0, 5.0])
-    private val screenPos = mk.ndarray(mk[0.0, 0.0, 2.0])
+    private val cameraPos = Point3D(0.0, 0.0, 5.0)
+    private val screenPos = Point3D(0.0, 0.0, 2.0)
 
     // Stores the x and y angle the person is rotated at
     private var yAngle = 0.0
     private var xAngle = 0.0
+
+    // Stores the x and y angle offsets so the person is oriented correctly
+    private var yAngleOffset = Math.PI
+    private var xAngleOffset = 0.0
 
     // Stores the zoom level
     var zoom = 200.0
@@ -104,8 +105,8 @@ object Pane3D : Pane() {
             val deltaY = event.sceneY - lastY
 
             // Uses the change in mouse position to change the angleX and angleY
-            yAngle += deltaX * Math.PI / 180
-            xAngle += deltaY * Math.PI / 180
+            yAngle += deltaY * Math.PI / 180
+            xAngle += deltaX * Math.PI / 180
 
             // Re-renders the person
             render(currentFrame, zoom)
@@ -128,46 +129,65 @@ object Pane3D : Pane() {
         }
     }
 
-    // Big render function. too lazy to comment rn
+    // Big render function!
     fun render(frame: Int, scale: Double) {
+        // Clears everything from the pane to start fresh
         Pane3D.children.clear()
+
+        // Sets the renderList, which is a wireframe that has been centered at the origin and rotate
         var renderList = animation[
             if (frame >= animation.size) animation.size - 1 else frame
-        ].reflectX()
-            .centerPointsAtOrigin().rotateY(yAngle).rotateX(xAngle)
+        ].reflect(true, false, false).centerPointsAtOrigin().rotate(xAngle + xAngleOffset, yAngle + yAngleOffset)
 
+        // Sets the minimum and maximum dot sizes
+        // What did you think this did
         val minDotSize = 5.0
         val maxDotSize = 7.5
 
-        val dotSizes = renderList.map {
-            1 / sqrt(
-                (it[0] - cameraPos[0]).pow(2) + (it[1] - cameraPos[1]).pow(2) + (it[2] - cameraPos[2]).pow(2)
-            )
+        // Makes a list of the inverse of the distances from the dots to the camera
+        val dotSizes = renderList.points.map {
+            1 / it.distance(cameraPos)
         }
 
+        // Finds the max and minimum dot sizes
         val maxDist = dotSizes.max()
         val minDist = dotSizes.min()
 
+        // Smashes the 3d renderList to 2d for the screen
         renderList = renderList.toScreenSpace(screenPos, cameraPos)
 
-        for (i in renderList.indices) {
+        // Loops over every point in the to be rendered wireframe
+        for (i in renderList.points.indices) {
+
+            // Creates the dot at each point with the correct size fill, etc.
             val dot = Circle()
             dot.fill = textColor
             dot.radius = dotSizes[i].remap(minDist, maxDist, minDotSize, maxDotSize) * scale * 0.005
-            dot.centerX = renderList[i][0] * scale
-            dot.centerY = renderList[i][1] * scale
+            dot.centerX = renderList.points[i].x * scale
+            dot.centerY = renderList.points[i].y * scale
+
+            // Add the dot to the pane
             Pane3D.children.add(
                 dot
             )
 
+            // Creates the connections between the dots
             for (j in personConnections[i].indices) {
+
+                // Initializes the line
                 val line = Line()
+
+                // Sets the correct color and width
                 line.stroke = textColor
                 line.strokeWidth = 2.0
-                line.startX = renderList[i][0] * scale
-                line.startY = renderList[i][1] * scale
-                line.endX = renderList[personConnections[i][j] - 11][0] * scale
-                line.endY = renderList[personConnections[i][j] - 11][1] * scale
+
+                // Calculates the x and y coordinates of the points the line connects using the numbers in the connection list
+                line.startX = renderList.points[i].x * scale
+                line.startY = renderList.points[i].y * scale
+                line.endX = renderList.points[personConnections[i][j] - 11].x * scale
+                line.endY = renderList.points[personConnections[i][j] - 11].y * scale
+
+                // Adds the line to the pane
                 Pane3D.children.add(
                     line
                 )
