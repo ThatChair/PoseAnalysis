@@ -13,6 +13,10 @@ import javafx.stage.Stage
 class App : Application() {
 
     companion object {
+
+        // Defines the version of the application
+        val version = "v1.0.4-Dev"
+
         // Sets up the stage, the top level container that contains the entire application
         lateinit var stage: Stage
         // Sets up a static BG color value for global use. From a scale of 0 (Black) to 255 (White)

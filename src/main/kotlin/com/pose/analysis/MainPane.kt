@@ -1,7 +1,11 @@
 package com.pose.analysis
 
 import com.pose.analysis.App.Companion.bgColor
+import com.pose.analysis.App.Companion.mutedTextColor
+import com.pose.analysis.App.Companion.smallFont
+import com.pose.analysis.App.Companion.version
 import javafx.geometry.Insets
+import javafx.scene.control.Label
 import javafx.scene.image.ImageView
 import javafx.scene.layout.*
 import javafx.stage.Screen
@@ -39,9 +43,16 @@ object MainPane: VBox() {
         topPane.prefHeight = 32.0
         topPane.maxHeight = screenHeight / 8.0
 
+        // Sets up the version text
+        val text = Label(version)
+        text.layoutX = (screenWidth - (text.text.length * 7))
+        text.font = smallFont
+        text.setColor(mutedTextColor)
+
         // Adds all children to the top pane
         topPane.children.addAll(
-            MainMenuBar
+            MainMenuBar,
+            text
         )
 
         // Sets preferred and max height for the middle pane
