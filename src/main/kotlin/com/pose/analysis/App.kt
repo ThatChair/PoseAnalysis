@@ -2,6 +2,7 @@ package com.pose.analysis
 
 import com.pose.analysis.ErrorPane.showError
 import javafx.application.Application
+import javafx.application.Platform
 import javafx.beans.property.IntegerProperty
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.geometry.Rectangle2D
@@ -48,6 +49,8 @@ class App : Application() {
         // Defines the path to the python dir that contains the backend and requirements.txt
         val pythonDir =
             if (isRunningFromJar) "$path\\python" else "$path\\src\\main\\python"
+
+        val pythonPath: String = "python3.11"
 
         // Load the TTF file
         val smallFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 13.0)
@@ -113,13 +116,17 @@ class App : Application() {
                 // Gets the path to python3.11
                 val pythonPath = getCommand("where python3.11")
 
+                println("Python3.11 found at: $pythonPath")
+
                 // Updates pip
                 runCommand("$pythonPath -m pip install --upgrade pip")
 
                 // Installs requirements
                 runCommand("$pythonPath -m pip install -r $pythonDir\\requirements.txt")
             } catch (e: Exception) {
-                showError(e.toString())
+                Platform.runLater {
+                    showError(e.toString())
+                }
             }
 
             numLoadingThreads.set(numLoadingThreads.get() - 1)

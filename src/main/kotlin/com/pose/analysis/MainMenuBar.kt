@@ -3,6 +3,7 @@ package com.pose.analysis
 
 import com.pose.analysis.App.Companion.path
 import com.pose.analysis.App.Companion.pythonDir
+import com.pose.analysis.App.Companion.pythonPath
 import com.pose.analysis.App.Companion.smallFont
 import com.pose.analysis.App.Companion.stage
 import com.pose.analysis.App.Companion.textColor
@@ -15,10 +16,8 @@ import javafx.scene.control.MenuItem
 import javafx.stage.FileChooser
 import javafx.stage.FileChooser.ExtensionFilter
 import java.awt.Desktop
-import java.io.BufferedReader
 import java.io.File
 import java.io.IOException
-import java.io.InputStreamReader
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardCopyOption
@@ -155,43 +154,7 @@ object MainMenuBar: MenuBar() {
 
                     println("Running python from: $pythonDir\\main.py")
 
-                    var process = ProcessBuilder("where", "python3.11").start()
-                    val inputStream = process.inputStream
-                    val bufferedReader = BufferedReader(InputStreamReader(inputStream))
-
-                    // Read the output of the command
-                    val output = bufferedReader.readLine()
-
-                    if (output != null) {
-
-                        println("Python3.11 found at: $output")
-
-                        val command = listOf(output, "$pythonDir\\main.py", path, selectedFile.path)
-
-                        // Creates and starts the process to run the python script with a command
-                        val processBuilder = ProcessBuilder(command)
-                        process = processBuilder.start()
-
-                        // Waits for the process to finish
-                        val exitCode = process.waitFor()
-
-                        // Capture and print standard error
-                        val errorReader = BufferedReader(InputStreamReader(process.errorStream))
-                        var errorLine: String?
-                        while (errorReader.readLine().also { errorLine = it } != null) {
-                            Platform.runLater {
-                                errorLine?.let { println(it) }
-                                errorLine?.let { showError("", errorLine.toString()) }
-                            }
-                        }
-
-                        // Print the exit code
-                        println("Exit Code: $exitCode")
-                    } else {
-                        Platform.runLater {
-                            showError("Cannot find Python 3.11", "Check that Python 3.11 is installed correctly")
-                        }
-                    }
+                    runCommand("$pythonPath $pythonDir\\main.py $path ${selectedFile.path}")
 
                 } catch (e: Exception) {
                     Platform.runLater {
