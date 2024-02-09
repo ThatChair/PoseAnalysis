@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="Added requirements.txt and auto importing of python libraries.&#10;Removed coroutines dep&#10;Added update detection">
+    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="Updated redundancy in video loading and improved error handling with python version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/App.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" afterDir="false" />
@@ -502,12 +502,19 @@
       <option name="project" value="LOCAL" />
       <updated>1707503802707</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Updated redundancy in video loading and improved error handling with python version">
+      <option name="closed" value="true" />
+      <created>1707505538353</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1707505538353</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Its now Jarrable!&#10;Also got ready somewhat for a loading animation" />
     <MESSAGE value="added epic loading gif &amp; cool font" />
     <MESSAGE value="oops forgot to add font lol" />
     <MESSAGE value="Some small visual changes / color tweaks" />
@@ -532,7 +539,8 @@
     <MESSAGE value="Edited version for update" />
     <MESSAGE value="removed unnecessary multik dependency" />
     <MESSAGE value="Added requirements.txt and auto importing of python libraries.&#10;Removed coroutines dep&#10;Added update detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added requirements.txt and auto importing of python libraries.&#10;Removed coroutines dep&#10;Added update detection" />
+    <MESSAGE value="Updated redundancy in video loading and improved error handling with python version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated redundancy in video loading and improved error handling with python version" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

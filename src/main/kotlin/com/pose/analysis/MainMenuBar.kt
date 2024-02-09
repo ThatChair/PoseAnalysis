@@ -134,45 +134,48 @@ object MainMenuBar: MenuBar() {
         // Opens the file chooser
         val selectedFile: File? = fileChooser.showOpenDialog(stage)
 
+        if (selectedFile?.path?.contains(" ") == true) {
+            Platform.runLater {
+                showError("File Cannot contain a space!")
+            }
+            return
+        }
+
         // Starts a separate thread so the application doesn't freeze
         thread {
 
             App.numLoadingThreads.set(App.numLoadingThreads.get() + 1)
 
             // Checks if there is a selected file
-            if (selectedFile != null) {
 
-                println("Successfully selected file")
+            println("Successfully selected file")
 
-                // Calls the start loading function on the original thread
-                Platform.runLater {
-                    // Turns off welcome stuff if it's on
-                    isWelcome.set(false)
-                }
+            // Calls the start loading function on the original thread
+            Platform.runLater {
+                // Turns off welcome stuff if it's on
+                isWelcome.set(false)
+            }
 
-                try {
+            try {
 
-                    println("Running python from: $pythonDir\\main.py")
+                println("Running python from: $pythonDir\\main.py")
 
+                if (selectedFile != null) {
                     runCommand("$pythonPath $pythonDir\\main.py $path ${selectedFile.path}")
-
-                } catch (e: Exception) {
-                    Platform.runLater {
-                        showError("Cannot run python script", (e.message ?: "") + (e.cause?.message ?: ""))
-                    }
                 }
 
-                loadAnimation("./res/temp/data.json")
-
-                // Calls the done loading function on the original thread
+            } catch (e: Exception) {
                 Platform.runLater {
-                    Pane3D.render(currentFrame, Pane3D.zoom)
+                    showError("Cannot run python script", (e.message ?: "") + (e.cause?.message ?: ""))
                 }
-            } else {
+            }
 
-                // Prints if no file is selected. Duh.
-                showError("No file selected")
+            loadAnimation("./res/temp/data.json")
 
+            // Calls the done loading function on the original thread
+            Platform.runLater {
+                animPercent.set(0.0)
+                Pane3D.render(currentFrame, Pane3D.zoom)
             }
 
             App.numLoadingThreads.set(App.numLoadingThreads.get() - 1)

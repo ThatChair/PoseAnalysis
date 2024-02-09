@@ -50,7 +50,7 @@ class App : Application() {
         val pythonDir =
             if (isRunningFromJar) "$path\\python" else "$path\\src\\main\\python"
 
-        val pythonPath: String = "python3.11"
+        var pythonPath: String = "python3.11"
 
         // Load the TTF file
         val smallFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 13.0)
@@ -114,7 +114,7 @@ class App : Application() {
             try {
 
                 // Gets the path to python3.11
-                val pythonPath = getCommand("where python3.11")
+                pythonPath = getCommand("where python3.11")
 
                 println("Python3.11 found at: $pythonPath")
 
