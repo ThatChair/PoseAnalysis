@@ -136,7 +136,7 @@ object MainMenuBar: MenuBar() {
 
         if (selectedFile?.path?.contains(" ") == true) {
             Platform.runLater {
-                showError("File cannot contain a space!")
+                showError("File or path cannot contain a space!")
             }
             return
         }
