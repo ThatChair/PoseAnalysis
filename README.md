@@ -17,13 +17,8 @@ The following instructions should get you set up with an installation of the app
 **This app works with Python 3.11 ONLY! (No other versions)**
 
 - Install Java from [here](https://www.java.com/en/download/)
-- Install Python 3.11 from the bottom of [this page](https://www.python.org/downloads/release/python-3117/)
-- Run the following commands:
-
-```
-    python3.11 -m pip install opencv-python
-    python3.11 -m pip install mediapipe
-```
+- Install Python 3.11 from the bottom of [this page](https://www.python.org/downloads/release/python-3117/) or the
+  microsoft store
 
 ### Installing
 

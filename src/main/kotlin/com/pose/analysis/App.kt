@@ -1,6 +1,9 @@
 package com.pose.analysis
 
+import com.pose.analysis.ErrorPane.showError
 import javafx.application.Application
+import javafx.beans.property.IntegerProperty
+import javafx.beans.property.SimpleIntegerProperty
 import javafx.geometry.Rectangle2D
 import javafx.scene.Scene
 import javafx.scene.image.Image
@@ -8,6 +11,7 @@ import javafx.scene.paint.Color
 import javafx.scene.text.Font
 import javafx.stage.Screen
 import javafx.stage.Stage
+import kotlin.concurrent.thread
 
 // The App class, which sets up the entire application
 class App : Application() {
@@ -16,6 +20,15 @@ class App : Application() {
 
         // Defines the version of the application
         val version = "v1.0.4"
+
+        // Defines the version as an Int for version comparison
+        val versionInt = 104
+
+        // Determines whether the app needs an update
+        var needsUpdate = false
+
+        // Keeps track of the number of threads running
+        var numLoadingThreads: IntegerProperty = SimpleIntegerProperty()
 
         // Sets up the stage, the top level container that contains the entire application
         lateinit var stage: Stage
@@ -31,6 +44,10 @@ class App : Application() {
 
         // Gets the path the application is located, used for finding assets
         val path: String = System.getProperty("user.dir")
+
+        // Defines the path to the python dir that contains the backend and requirements.txt
+        val pythonDir =
+            if (isRunningFromJar) "$path\\python" else "$path\\src\\main\\python"
 
         // Load the TTF file
         val smallFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 13.0)
@@ -61,13 +78,55 @@ class App : Application() {
         stage.icons.add(Image("icon.png"))
 
         // Defines the bounds of the screen
-        val bounds = Rectangle2D(screen.visualBounds.minX, screen.visualBounds.minY, screen.visualBounds.width, screen.visualBounds.height)
+        val bounds = Rectangle2D(
+            screen.visualBounds.minX,
+            screen.visualBounds.minY,
+            screen.visualBounds.width,
+            screen.visualBounds.height
+        )
         // Sets the bounds of the scene to the screen bounds
         stage.scene = Scene(MainPane, bounds.width, bounds.height)
         // Rescales the stage to the scene
         stage.sizeToScene()
         // Shows the stage
         stage.show()
+
+        // Loads libraries and checks for newer version
+        isWelcome.set(false)
+        thread {
+            numLoadingThreads.set(numLoadingThreads.get() + 1)
+
+            thread {
+                numLoadingThreads.set(numLoadingThreads.get() + 1)
+
+                // Checks latest release and if there is a newer version
+                if (getLatestRelease() > versionInt) {
+                    needsUpdate = true
+                }
+
+                numLoadingThreads.set(numLoadingThreads.get() - 1)
+
+            }
+
+            try {
+
+                // Gets the path to python3.11
+                val pythonPath = getCommand("where python3.11")
+
+                // Updates pip
+                runCommand("$pythonPath -m pip install --upgrade pip")
+
+                // Installs requirements
+                runCommand("$pythonPath -m pip install -r $pythonDir\\requirements.txt")
+            } catch (e: Exception) {
+                showError(e.toString())
+            }
+
+            numLoadingThreads.set(numLoadingThreads.get() - 1)
+
+            // Shows the welcome stuff
+            isWelcome.set(true)
+        }
     }
 
     // Called when application is stopped

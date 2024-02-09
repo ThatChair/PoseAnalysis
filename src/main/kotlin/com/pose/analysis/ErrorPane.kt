@@ -3,7 +3,6 @@ package com.pose.analysis
 import com.pose.analysis.App.Companion.mediumFont
 import com.pose.analysis.App.Companion.smallFont
 import com.pose.analysis.ErrorPopup.showErrorPopup
-import com.pose.analysis.MainPane.doneLoading
 import javafx.geometry.Insets
 import javafx.scene.control.Label
 import javafx.scene.layout.Background
@@ -28,7 +27,7 @@ object ErrorPane : TextFlow() {
     // Displays the error, called when an error is encountered
     fun showError(message: String, desc: String? = null) {
 
-        doneLoading()
+        MainPane.loadingGif.isVisible = false
 
         // Prints the error
         println(if (desc != null) "ERROR: $message\n$desc" else "ERROR: $message")

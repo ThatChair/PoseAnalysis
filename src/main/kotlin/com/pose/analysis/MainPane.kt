@@ -85,16 +85,26 @@ object MainPane: VBox() {
             bottomPane
 
         )
+
+        // Loads if multiple threads are going
+        App.numLoadingThreads.addListener { _, _, newValue ->
+            println("Threads changed to $newValue")
+            if (newValue.toInt() <= 0) {
+                stopLoading()
+            } else if (!loadingGif.isVisible) {
+                startLoading()
+            }
+        }
     }
 
     // Shows the loading gif
-    fun startLoading() {
+    private fun startLoading() {
         println("Starting loading...")
         loadingGif.isVisible = true
     }
 
     // Hides the loading gif
-    fun doneLoading() {
+    private fun stopLoading() {
         println("Stopping loading")
         loadingGif.isVisible = false
     }

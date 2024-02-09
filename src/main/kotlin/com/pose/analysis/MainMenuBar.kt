@@ -2,12 +2,11 @@ package com.pose.analysis
 
 
 import com.pose.analysis.App.Companion.path
+import com.pose.analysis.App.Companion.pythonDir
 import com.pose.analysis.App.Companion.smallFont
 import com.pose.analysis.App.Companion.stage
 import com.pose.analysis.App.Companion.textColor
 import com.pose.analysis.ErrorPane.showError
-import com.pose.analysis.MainPane.doneLoading
-import com.pose.analysis.MainPane.startLoading
 import javafx.application.Platform
 import javafx.scene.control.Label
 import javafx.scene.control.Menu
@@ -138,6 +137,9 @@ object MainMenuBar: MenuBar() {
 
         // Starts a separate thread so the application doesn't freeze
         thread {
+
+            App.numLoadingThreads.set(App.numLoadingThreads.get() + 1)
+
             // Checks if there is a selected file
             if (selectedFile != null) {
 
@@ -147,16 +149,11 @@ object MainMenuBar: MenuBar() {
                 Platform.runLater {
                     // Turns off welcome stuff if it's on
                     isWelcome.set(false)
-                    startLoading()
                 }
-
-                // Defines the path to the python script that analyzes the copied file
-                val pythonScript =
-                    if (isRunningFromJar) "$path\\python\\main.py" else "$path\\src\\main\\python\\main.py"
 
                 try {
 
-                    println("Running python from: $pythonScript")
+                    println("Running python from: $pythonDir\\main.py")
 
                     var process = ProcessBuilder("where", "python3.11").start()
                     val inputStream = process.inputStream
@@ -167,9 +164,9 @@ object MainMenuBar: MenuBar() {
 
                     if (output != null) {
 
-                        println(output)
+                        println("Python3.11 found at: $output")
 
-                        val command = listOf(output, pythonScript, path, selectedFile.path)
+                        val command = listOf(output, "$pythonDir\\main.py", path, selectedFile.path)
 
                         // Creates and starts the process to run the python script with a command
                         val processBuilder = ProcessBuilder(command)
@@ -182,8 +179,8 @@ object MainMenuBar: MenuBar() {
                         val errorReader = BufferedReader(InputStreamReader(process.errorStream))
                         var errorLine: String?
                         while (errorReader.readLine().also { errorLine = it } != null) {
-                            System.err.println(errorLine)
                             Platform.runLater {
+                                errorLine?.let { println(it) }
                                 errorLine?.let { showError("", errorLine.toString()) }
                             }
                         }
@@ -207,7 +204,6 @@ object MainMenuBar: MenuBar() {
                 // Calls the done loading function on the original thread
                 Platform.runLater {
                     Pane3D.render(currentFrame, Pane3D.zoom)
-                    doneLoading()
                 }
             } else {
 
@@ -215,6 +211,8 @@ object MainMenuBar: MenuBar() {
                 showError("No file selected")
 
             }
+
+            App.numLoadingThreads.set(App.numLoadingThreads.get() - 1)
         }
     }
 
@@ -243,15 +241,16 @@ object MainMenuBar: MenuBar() {
 
             // Turns off welcome stuff if it's on
             thread {
+                App.numLoadingThreads.set(App.numLoadingThreads.get() + 1)
+
                 Platform.runLater {
                     isWelcome.set(false)
-                    startLoading()
                 }
                 loadAnimation(selectedFile.path)
                 Platform.runLater {
                     Pane3D.render(currentFrame, Pane3D.zoom)
-                    doneLoading()
                 }
+                App.numLoadingThreads.set(App.numLoadingThreads.get() - 1)
             }
         }
 

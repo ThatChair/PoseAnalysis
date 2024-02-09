@@ -1,0 +1,2 @@
+mediapipe==0.10.9
+opencv_python==4.8.1.78

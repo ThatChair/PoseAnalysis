@@ -1,14 +1,20 @@
 package com.pose.analysis
 
+import com.google.gson.Gson
+import com.google.gson.JsonArray
 import com.pose.analysis.App.Companion.logString
 import com.pose.analysis.App.Companion.path
 import com.pose.analysis.SliderPane.sliderPointPos
+import javafx.application.Platform
 import javafx.scene.control.Label
 import javafx.scene.input.MouseButton
 import javafx.scene.paint.Color
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Line
+import java.io.BufferedReader
 import java.io.File
+import java.io.InputStreamReader
+import java.net.URL
 import java.time.Instant
 import java.time.ZoneId
 
@@ -101,4 +107,74 @@ fun calculateSliderDrag(point: Circle, line: Line, minX: Double, maxX: Double) {
 fun getTime(): String {
     return Instant.now().atZone(ZoneId.systemDefault()).toString().replace(":", "-")
         .removeSuffix("[${ZoneId.systemDefault()}]").dropLast(16)
+}
+
+// Gets the latest release
+fun getLatestRelease(): Int {
+    try {
+        val url = URL("https://api.github.com/repos/thatchair/poseanalysis/tags")
+        val jsonString = url.readText()
+        return Gson().fromJson(jsonString, JsonArray::class.java)[0].asJsonObject["name"].asString.drop(1)
+            .replace(".", "").toInt()
+    } catch (_: Exception) {
+        return 0
+    }
+}
+
+// Runs a command
+fun runCommand(commandString: String) {
+
+    println("Running $commandString")
+
+    val command = commandString.split(" ")
+
+    // Creates and starts the process to run the python script with a command
+    val processBuilder = ProcessBuilder(command)
+    val process = processBuilder.start()
+
+    // Capture and print standard error
+    val errorReader = BufferedReader(InputStreamReader(process.inputStream))
+    var errorLine: String?
+    while (errorReader.readLine().also { errorLine = it } != null) {
+        Platform.runLater {
+            errorLine?.let { println(it) }
+        }
+    }
+
+    // Waits for the process to finish
+    val exitCode = process.waitFor()
+
+    // Print the exit code
+    println("Exit Code: $exitCode")
+
+}
+
+// Runs a command and gets the output
+fun getCommand(commandString: String): String {
+
+    println("Getting $commandString")
+
+    val command = commandString.split(" ")
+
+    // Creates and starts the process to run the python script with a command
+    val processBuilder = ProcessBuilder(command)
+    val process = processBuilder.start()
+
+    // Capture and stores output
+    val reader = BufferedReader(InputStreamReader(process.inputStream))
+    var temp: String?
+    var out = ""
+    while (reader.readLine().also { temp = it } != null) {
+        out += temp
+    }
+
+    // Waits for the process to finish
+    val exitCode = process.waitFor()
+
+    // Print the exit code
+    println("Exit Code: $exitCode")
+
+    // Returns output
+    return out
+
 }
