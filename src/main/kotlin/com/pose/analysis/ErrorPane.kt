@@ -3,6 +3,9 @@ package com.pose.analysis
 import com.pose.analysis.App.Companion.mediumFont
 import com.pose.analysis.App.Companion.smallFont
 import com.pose.analysis.ErrorPopup.showErrorPopup
+import com.pose.analysis.resources.extensions.setColor
+import com.pose.analysis.resources.functions.println
+import com.pose.analysis.resources.functions.writeLogFile
 import javafx.geometry.Insets
 import javafx.scene.control.Label
 import javafx.scene.layout.Background

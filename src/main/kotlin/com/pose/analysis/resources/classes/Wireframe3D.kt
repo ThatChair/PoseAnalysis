@@ -1,5 +1,8 @@
-package com.pose.analysis.math
+package com.pose.analysis.resources.classes
 
+import com.pose.analysis.resources.extensions.reflect
+import com.pose.analysis.resources.extensions.rotate
+import com.pose.analysis.resources.extensions.toScreenSpace
 import javafx.geometry.Point3D
 
 class Wireframe3D(var points: Array<Point3D>) {
@@ -9,8 +12,8 @@ class Wireframe3D(var points: Array<Point3D>) {
     }
 
     // Converts all points to the screen. See the same function in Point3D.kt
-    fun toScreenSpace(screenCenterPos: Point3D, cameraPos: Point3D): Wireframe3D {
-        return Wireframe3D((this.points.map { it.toScreenSpace(screenCenterPos, cameraPos) }).toTypedArray())
+    fun toScreenSpace(focalLength: Double, cameraPos: Point3D): Wireframe3D {
+        return Wireframe3D((this.points.map { it.toScreenSpace(focalLength, cameraPos) }).toTypedArray())
     }
 
     // Rotates all points about the origin. See the same function in Point3D.kt

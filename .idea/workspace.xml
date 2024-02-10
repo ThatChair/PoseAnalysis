@@ -4,10 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="Updated redundancy in video loading and improved error handling with python version">
+    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="Accidentally committed twice lol.&#10;Fixed error with a couple previous commits.">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/classes/Connections.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/extensions/Double.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/extensions/IntegerProperty.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/extensions/Label.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/functions/Command.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/functions/Logging.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/functions/Misc.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/functions/Rendering.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/AnimationManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/AnimationManager.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/App.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/ErrorPane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/ErrorPane.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/ErrorPopup.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/ErrorPopup.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Functions.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainPane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainPane.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Pane3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Pane3D.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/SliderPane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/SliderPane.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/WelcomePane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/WelcomePane.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/math/Point3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/extensions/Point3D.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/math/Wireframe3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/classes/Wireframe3D.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,37 +109,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Batch.installDeps.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build PoseAnalysis.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.PoseAnalysis [assemble].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.PoseAnalysis [createInstaller].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.PoseAnalysis [createWindowsInstaller].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.PoseAnalysis [fatJarMacX64].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.PoseAnalysis [fatJarWindowsX64].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.PoseAnalysis [fatJar].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.PoseAnalysis [installDist].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.PoseAnalysis [jpackage].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.PoseAnalysis [run].executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Main$Companion.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/teamm/IdeaProjects/PoseAnalysis/build/generated/source/buildConfig/main/main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/teamm/IdeaProjects/PoseAnalysis/build/libs/python&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Batch.installDeps.executor": "Run",
+    "Gradle.Build PoseAnalysis.executor": "Run",
+    "Gradle.PoseAnalysis [assemble].executor": "Run",
+    "Gradle.PoseAnalysis [createInstaller].executor": "Run",
+    "Gradle.PoseAnalysis [createWindowsInstaller].executor": "Run",
+    "Gradle.PoseAnalysis [fatJarMacX64].executor": "Run",
+    "Gradle.PoseAnalysis [fatJarWindowsX64].executor": "Run",
+    "Gradle.PoseAnalysis [fatJar].executor": "Run",
+    "Gradle.PoseAnalysis [installDist].executor": "Run",
+    "Gradle.PoseAnalysis [jpackage].executor": "Run",
+    "Gradle.PoseAnalysis [run].executor": "Run",
+    "Kotlin.Main$Companion.executor": "Run",
+    "Kotlin.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/teamm/IdeaProjects/PoseAnalysis/build/generated/source/buildConfig/main/main",
+    "last_opened_file_path": "C:/Users/teamm/IdeaProjects/PoseAnalysis/build/libs/python",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\build\libs\python" />
@@ -127,13 +147,14 @@
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\src\main\kotlin\com\example\jfxbase" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\src\main\kotlin\com\pose\analysis\resources\extensions" />
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis" />
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\build\libs" />
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\build\installers" />
       <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\src\main\resources" />
-      <recent name="C:\Users\teamm\IdeaProjects\PoseAnalysis\src\main\python" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.pose.analysis.resources.classes" />
       <recent name="com.pose.analysis" />
     </key>
   </component>
@@ -510,12 +531,35 @@
       <option name="project" value="LOCAL" />
       <updated>1707505538353</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Updated redundancy in video loading and improved error handling with python version">
+      <option name="closed" value="true" />
+      <created>1707506964428</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1707506964428</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Updated redundancy in video loading and improved error handling with python version">
+      <option name="closed" value="true" />
+      <created>1707507009010</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1707507009010</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Accidentally committed twice lol.&#10;Fixed error with a couple previous commits.">
+      <option name="closed" value="true" />
+      <created>1707507065632</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1707507065632</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="added epic loading gif &amp; cool font" />
     <MESSAGE value="oops forgot to add font lol" />
     <MESSAGE value="Some small visual changes / color tweaks" />
     <MESSAGE value="Cleaned up the WelcomePane" />
@@ -540,7 +584,8 @@
     <MESSAGE value="removed unnecessary multik dependency" />
     <MESSAGE value="Added requirements.txt and auto importing of python libraries.&#10;Removed coroutines dep&#10;Added update detection" />
     <MESSAGE value="Updated redundancy in video loading and improved error handling with python version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated redundancy in video loading and improved error handling with python version" />
+    <MESSAGE value="Accidentally committed twice lol.&#10;Fixed error with a couple previous commits." />
+    <option name="LAST_COMMIT_MESSAGE" value="Accidentally committed twice lol.&#10;Fixed error with a couple previous commits." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

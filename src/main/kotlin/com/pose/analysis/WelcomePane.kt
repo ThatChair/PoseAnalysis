@@ -4,6 +4,7 @@ import com.pose.analysis.App.Companion.largeFont
 import com.pose.analysis.App.Companion.mediumFont
 import com.pose.analysis.App.Companion.mutedTextColor
 import com.pose.analysis.MainPane.screenHeight
+import com.pose.analysis.resources.extensions.setColor
 import javafx.geometry.Pos
 import javafx.scene.control.Label
 import javafx.scene.layout.StackPane

@@ -4,6 +4,7 @@ import javafx.scene.effect.ColorAdjust
 import javafx.scene.effect.GaussianBlur
 import javafx.stage.Popup
 
+
 object ErrorPopup : Popup() {
 
     init {

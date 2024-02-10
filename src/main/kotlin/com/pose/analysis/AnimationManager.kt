@@ -3,9 +3,9 @@ package com.pose.analysis
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.pose.analysis.ErrorPane.showError
-import com.pose.analysis.Pane3D.render
-import com.pose.analysis.Pane3D.zoom
-import com.pose.analysis.math.Wireframe3D
+import com.pose.analysis.Pane3D.renderPerson
+import com.pose.analysis.resources.classes.Wireframe3D
+import com.pose.analysis.resources.functions.println
 import javafx.animation.AnimationTimer
 import javafx.application.Platform
 import javafx.beans.property.*
@@ -62,8 +62,8 @@ val animationTimer = object : AnimationTimer() {
                     animPercent.set(1.0)
                 }
 
-                // Perform rendering with the current frame and zoom level
-                render(currentFrame, zoom)
+                // Perform rendering
+                renderPerson()
 
                 // Update the last update time
                 lastUpdateTime = now

@@ -1,4 +1,4 @@
-package com.pose.analysis.math
+package com.pose.analysis.resources.extensions
 
 import javafx.geometry.Point3D
 import kotlin.math.cos
@@ -15,16 +15,14 @@ fun Point3D.reflect(x: Boolean, y: Boolean, z: Boolean): Point3D {
 }
 
 // Converts a Point3D to the screenspace using the screen center and the camera position. (It is assumed that the camera is pointed towards the screen center and the screen is perpendicular to the camera)
-fun Point3D.toScreenSpace(screenCenter: Point3D, cameraPosition: Point3D): Point3D {
+fun Point3D.toScreenSpace(focalLength: Double, cameraPosition: Point3D): Point3D {
 
-    // Calculates the distance between the screen and the camera
-    val focalLength = cameraPosition.magnitude() - screenCenter.magnitude()
+    val scaledCam = cameraPosition.scale(this.magnitude() - focalLength)
 
     // Return a point 3d with only x and y coordinates (z is zero, never used)
     return Point3D(
-        (
-                this.x * focalLength) / (this.z - focalLength) + screenCenter.x,
-        (this.y * focalLength) / (this.z - focalLength) + screenCenter.y,
+        (this.x * focalLength) / (this.z - focalLength) + scaledCam.x,
+        (this.y * focalLength) / (this.z - focalLength) + scaledCam.y,
         0.0
     )
 }
@@ -32,7 +30,7 @@ fun Point3D.toScreenSpace(screenCenter: Point3D, cameraPosition: Point3D): Point
 // Rotates a Point3D around the origin
 fun Point3D.rotate(yaw: Double, pitch: Double): Point3D {
 
-    // Some math before so it doesn't happen multiple times
+    // Some resources before so it doesn't happen multiple times
     val a = cos(pitch)
     val b = sin(pitch)
     val c = cos(yaw)
@@ -47,4 +45,9 @@ fun Point3D.rotate(yaw: Double, pitch: Double): Point3D {
         (b * d * this.x) + (a * this.y) - (c * b * this.z),
         -(a * d * this.x) + (b * this.y) + (a * c * this.z)
     )
+}
+
+fun Point3D.scale(newMagnitude: Double): Point3D {
+    val mag = this.magnitude()
+    return this.multiply(newMagnitude / mag)
 }

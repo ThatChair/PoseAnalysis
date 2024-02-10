@@ -1,9 +1,11 @@
 package com.pose.analysis
 
+import com.pose.analysis.App.Companion.VERSION
 import com.pose.analysis.App.Companion.bgColor
 import com.pose.analysis.App.Companion.mutedTextColor
 import com.pose.analysis.App.Companion.smallFont
-import com.pose.analysis.App.Companion.version
+import com.pose.analysis.resources.extensions.setColor
+import com.pose.analysis.resources.functions.println
 import javafx.geometry.Insets
 import javafx.scene.control.Label
 import javafx.scene.image.ImageView
@@ -44,7 +46,7 @@ object MainPane: VBox() {
         topPane.maxHeight = screenHeight / 8.0
 
         // Sets up the version text
-        val text = Label(version)
+        val text = Label(VERSION)
         text.layoutX = (screenWidth - (text.text.length * 7))
         text.font = smallFont
         text.setColor(mutedTextColor)

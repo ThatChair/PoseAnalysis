@@ -1,6 +1,12 @@
 package com.pose.analysis
 
 import com.pose.analysis.ErrorPane.showError
+import com.pose.analysis.resources.extensions.decrement
+import com.pose.analysis.resources.extensions.increment
+import com.pose.analysis.resources.functions.getCommand
+import com.pose.analysis.resources.functions.getLatestRelease
+import com.pose.analysis.resources.functions.println
+import com.pose.analysis.resources.functions.runCommand
 import javafx.application.Application
 import javafx.application.Platform
 import javafx.beans.property.IntegerProperty
@@ -20,13 +26,27 @@ class App : Application() {
     companion object {
 
         // Defines the version of the application
-        val version = "v1.0.4"
+        const val VERSION = "v1.0.4"
 
         // Defines the version as an Int for version comparison
-        val versionInt = 104
+        const val VERSIONNUM = 104
 
         // Determines whether the app needs an update
         var needsUpdate = false
+
+        // Determines if the app is running from intellij or a JAR
+        private val isRunningFromJar: Boolean
+            get() {
+                // Gets the class name
+                val className = App::class.java.name.replace(".", "/") + ".class"
+
+                // Gets the classpath
+                val classPath = App::class.java.classLoader.getResource(className)?.toString() ?: return false
+
+                // Returns whether the app is running from intellij or a JAR
+                return classPath.startsWith("jar:")
+            }
+
 
         // Keeps track of the number of threads running
         var numLoadingThreads: IntegerProperty = SimpleIntegerProperty()
@@ -97,17 +117,17 @@ class App : Application() {
         // Loads libraries and checks for newer version
         isWelcome.set(false)
         thread {
-            numLoadingThreads.set(numLoadingThreads.get() + 1)
+            numLoadingThreads.increment(1)
 
             thread {
-                numLoadingThreads.set(numLoadingThreads.get() + 1)
+                numLoadingThreads.increment(1)
 
                 // Checks latest release and if there is a newer version
-                if (getLatestRelease() > versionInt) {
+                if (getLatestRelease() > VERSIONNUM) {
                     needsUpdate = true
                 }
 
-                numLoadingThreads.set(numLoadingThreads.get() - 1)
+                numLoadingThreads.decrement(1)
 
             }
 
@@ -129,7 +149,7 @@ class App : Application() {
                 }
             }
 
-            numLoadingThreads.set(numLoadingThreads.get() - 1)
+            numLoadingThreads.decrement(1)
 
             // Shows the welcome stuff
             isWelcome.set(true)

@@ -8,6 +8,12 @@ import com.pose.analysis.App.Companion.smallFont
 import com.pose.analysis.App.Companion.stage
 import com.pose.analysis.App.Companion.textColor
 import com.pose.analysis.ErrorPane.showError
+import com.pose.analysis.Pane3D.renderPerson
+import com.pose.analysis.resources.extensions.decrement
+import com.pose.analysis.resources.extensions.increment
+import com.pose.analysis.resources.extensions.setColor
+import com.pose.analysis.resources.functions.println
+import com.pose.analysis.resources.functions.runCommand
 import javafx.application.Platform
 import javafx.scene.control.Label
 import javafx.scene.control.Menu
@@ -144,7 +150,7 @@ object MainMenuBar: MenuBar() {
         // Starts a separate thread so the application doesn't freeze
         thread {
 
-            App.numLoadingThreads.set(App.numLoadingThreads.get() + 1)
+            App.numLoadingThreads.increment(1)
 
             // Checks if there is a selected file
 
@@ -175,10 +181,10 @@ object MainMenuBar: MenuBar() {
             // Calls the done loading function on the original thread
             Platform.runLater {
                 animPercent.set(0.0)
-                Pane3D.render(currentFrame, Pane3D.zoom)
+                renderPerson()
             }
 
-            App.numLoadingThreads.set(App.numLoadingThreads.get() - 1)
+            App.numLoadingThreads.decrement(1)
         }
     }
 
@@ -207,16 +213,16 @@ object MainMenuBar: MenuBar() {
 
             // Turns off welcome stuff if it's on
             thread {
-                App.numLoadingThreads.set(App.numLoadingThreads.get() + 1)
+                App.numLoadingThreads.increment(1)
 
                 Platform.runLater {
                     isWelcome.set(false)
                 }
                 loadAnimation(selectedFile.path)
                 Platform.runLater {
-                    Pane3D.render(currentFrame, Pane3D.zoom)
+                    renderPerson()
                 }
-                App.numLoadingThreads.set(App.numLoadingThreads.get() - 1)
+                App.numLoadingThreads.decrement(1)
             }
         }
 

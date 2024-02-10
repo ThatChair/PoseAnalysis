@@ -1,12 +1,11 @@
 package com.pose.analysis
 
-import com.pose.analysis.App.Companion.textColor
 import com.pose.analysis.MainPane.middlePane
+import com.pose.analysis.resources.classes.Connections
+import com.pose.analysis.resources.functions.render
 import javafx.beans.binding.Bindings
 import javafx.geometry.Point3D
 import javafx.scene.layout.Pane
-import javafx.scene.shape.Circle
-import javafx.scene.shape.Line
 
 object Pane3D : Pane() {
 
@@ -15,45 +14,45 @@ object Pane3D : Pane() {
     // This sets up the lines connecting the dots of the 3D render.
     // Each array is the connections for the dot at that index (i.e. index on connects to index 12, 13, & 23)
     // The first couple are commented out because the head is not rendered
-    private val personConnections = arrayOf(
-//        arrayOf(2, 5),
-//        arrayOf(),
-//        arrayOf(7),
-//        arrayOf(),
-//        arrayOf(),
-//        arrayOf(8),
-//        arrayOf(),
-//        arrayOf(),
-//        arrayOf(),
-//        arrayOf(10),
-//        arrayOf(),
-        arrayOf(12, 13, 23),
-        arrayOf(14, 24),
-        arrayOf(15),
-        arrayOf(16),
-        arrayOf(17, 19, 21),
-        arrayOf(18, 20, 22),
-        arrayOf(),
-        arrayOf(),
-        arrayOf(),
-        arrayOf(),
-        arrayOf(),
-        arrayOf(),
-        arrayOf(24, 25),
-        arrayOf(26),
-        arrayOf(27),
-        arrayOf(28),
-        arrayOf(29, 31),
-        arrayOf(30, 32),
-        arrayOf(31),
-        arrayOf(32),
-        arrayOf(),
-        arrayOf()
+    private val personConnections = Connections(
+//        mutableListOf(2, 5),
+//        mutableListOf(),
+//        mutableListOf(7),
+//        mutableListOf(),
+//        mutableListOf(),
+//        mutableListOf(8),
+//        mutableListOf(),
+//        mutableListOf(),
+//        mutableListOf(),
+//        mutableListOf(10),
+//        mutableListOf(),
+        mutableListOf(12, 13, 23),
+        mutableListOf(14, 24),
+        mutableListOf(15),
+        mutableListOf(16),
+        mutableListOf(17, 19, 21),
+        mutableListOf(18, 20, 22),
+        mutableListOf(),
+        mutableListOf(),
+        mutableListOf(),
+        mutableListOf(),
+        mutableListOf(),
+        mutableListOf(),
+        mutableListOf(24, 25),
+        mutableListOf(26),
+        mutableListOf(27),
+        mutableListOf(28),
+        mutableListOf(29, 31),
+        mutableListOf(30, 32),
+        mutableListOf(31),
+        mutableListOf(32),
+        mutableListOf(),
+        mutableListOf()
     )
 
     // Specifies the camera position and the screen position in 3d space
-    private val cameraPos = Point3D(0.0, 0.0, 5.0)
-    private val screenPos = Point3D(0.0, 0.0, 2.0)
+    val cameraPos = Point3D(0.0, 0.0, 5.0)
+    private const val FOCALLENGTH = 3.0
 
     // Stores the x and y angle the person is rotated at
     private var yAngle = 0.0
@@ -109,8 +108,7 @@ object Pane3D : Pane() {
             xAngle += deltaX * Math.PI / 180
 
             // Re-renders the person
-            render(currentFrame, zoom)
-
+            renderPerson()
             // Update lastX and lastY for the next frame
             lastX = event.sceneX
             lastY = event.sceneY
@@ -119,79 +117,26 @@ object Pane3D : Pane() {
         // Handles touchscreen zooming
         Pane3D.setOnZoom { event ->
             zoom *= event.zoomFactor
-            render(currentFrame, zoom)
+            renderPerson()
         }
 
         // Handles trackpad/scroll zooming
         Pane3D.setOnScroll { event ->
             zoom += event.deltaX + event.deltaY
-            render(currentFrame, zoom)
+            renderPerson()
         }
     }
 
-    // Big render function!
-    fun render(frame: Int, scale: Double) {
-        // Clears everything from the pane to start fresh
-        Pane3D.children.clear()
-
-        // Sets the renderList, which is a wireframe that has been centered at the origin and rotate
-        var renderList = animation[
-            if (frame >= animation.size) animation.size - 1 else frame
-        ].reflect(true, false, false).centerPointsAtOrigin().rotate(xAngle + xAngleOffset, yAngle + yAngleOffset)
-
-        // Sets the minimum and maximum dot sizes
-        // What did you think this did
-        val minDotSize = 5.0
-        val maxDotSize = 7.5
-
-        // Makes a list of the inverse of the distances from the dots to the camera
-        val dotSizes = renderList.points.map {
-            1 / it.distance(cameraPos)
-        }
-
-        // Finds the max and minimum dot sizes
-        val maxDist = dotSizes.max()
-        val minDist = dotSizes.min()
-
-        // Smashes the 3d renderList to 2d for the screen
-        renderList = renderList.toScreenSpace(screenPos, cameraPos)
-
-        // Loops over every point in the to be rendered wireframe
-        for (i in renderList.points.indices) {
-
-            // Creates the dot at each point with the correct size fill, etc.
-            val dot = Circle()
-            dot.fill = textColor
-            dot.radius = dotSizes[i].remap(minDist, maxDist, minDotSize, maxDotSize) * scale * 0.005
-            dot.centerX = renderList.points[i].x * scale
-            dot.centerY = renderList.points[i].y * scale
-
-            // Add the dot to the pane
-            Pane3D.children.add(
-                dot
-            )
-
-            // Creates the connections between the dots
-            for (j in personConnections[i].indices) {
-
-                // Initializes the line
-                val line = Line()
-
-                // Sets the correct color and width
-                line.stroke = textColor
-                line.strokeWidth = 2.0
-
-                // Calculates the x and y coordinates of the points the line connects using the numbers in the connection list
-                line.startX = renderList.points[i].x * scale
-                line.startY = renderList.points[i].y * scale
-                line.endX = renderList.points[personConnections[i][j] - 11].x * scale
-                line.endY = renderList.points[personConnections[i][j] - 11].y * scale
-
-                // Adds the line to the pane
-                Pane3D.children.add(
-                    line
-                )
-            }
-        }
+    fun renderPerson() {
+        this.render(
+            animation,
+            personConnections,
+            xAngle + xAngleOffset,
+            yAngle + yAngleOffset,
+            currentFrame,
+            cameraPos,
+            FOCALLENGTH,
+            zoom
+        )
     }
 }

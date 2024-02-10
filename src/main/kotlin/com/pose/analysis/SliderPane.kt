@@ -4,8 +4,8 @@ import com.pose.analysis.App.Companion.mutedTextColor
 import com.pose.analysis.App.Companion.textColor
 import com.pose.analysis.MainPane.loadingGif
 import com.pose.analysis.MainPane.screenWidth
-import com.pose.analysis.Pane3D.render
-import com.pose.analysis.Pane3D.zoom
+import com.pose.analysis.Pane3D.renderPerson
+import com.pose.analysis.resources.functions.calculateSliderDrag
 import javafx.beans.binding.Bindings
 import javafx.beans.property.DoubleProperty
 import javafx.beans.property.SimpleDoubleProperty
@@ -104,7 +104,7 @@ object SliderPane: Pane() {
         sliderPointPos.addListener { _, _, newValue ->
             if (!isAnimationPlaying.get()) {
                 animPercent.set((newValue.toDouble() - sliderLine.startX) / (sliderLine.endX - sliderLine.startX))
-                render(currentFrame, zoom)
+                renderPerson()
             }
         }
 
