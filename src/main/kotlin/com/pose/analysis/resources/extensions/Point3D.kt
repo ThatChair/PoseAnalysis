@@ -14,15 +14,16 @@ fun Point3D.reflect(x: Boolean, y: Boolean, z: Boolean): Point3D {
     )
 }
 
-// Converts a Point3D to the screenspace using the screen center and the camera position. (It is assumed that the camera is pointed towards the screen center and the screen is perpendicular to the camera)
+// Converts a Point3D to the screenspace using the camera position and the focal length. (It is assumed that the camera is pointed towards the screen center and the screen is perpendicular to the camera)
 fun Point3D.toScreenSpace(focalLength: Double, cameraPosition: Point3D): Point3D {
 
-    val scaledCam = cameraPosition.scale(this.magnitude() - focalLength)
+    // Finds the focal point, determined by adding a vector perpendicular to the camera and with a magnitude of the focal length to the camera position
+    val focalPoint = cameraPosition.scale(this.magnitude() - focalLength)
 
     // Return a point 3d with only x and y coordinates (z is zero, never used)
     return Point3D(
-        (this.x * focalLength) / (this.z - focalLength) + scaledCam.x,
-        (this.y * focalLength) / (this.z - focalLength) + scaledCam.y,
+        (this.x * focalLength) / (this.z - focalLength) + focalPoint.x,
+        (this.y * focalLength) / (this.z - focalLength) + focalPoint.y,
         0.0
     )
 }
@@ -47,7 +48,11 @@ fun Point3D.rotate(yaw: Double, pitch: Double): Point3D {
     )
 }
 
+// Scales the Point3D towards the origin to have the given magnitude
 fun Point3D.scale(newMagnitude: Double): Point3D {
+    // Gets the current magnitude of the point
     val mag = this.magnitude()
+
+    // Returns the point scaled to the given magnitude
     return this.multiply(newMagnitude / mag)
 }

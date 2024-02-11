@@ -5,7 +5,9 @@ import com.pose.analysis.resources.extensions.rotate
 import com.pose.analysis.resources.extensions.toScreenSpace
 import javafx.geometry.Point3D
 
+// A wireframe, which is really just an array of points
 class Wireframe3D(var points: Array<Point3D>) {
+
     // Reflects all points across the specified axes
     fun reflect(x: Boolean, y: Boolean, z: Boolean): Wireframe3D {
         return Wireframe3D((this.points.map { it.reflect(x, y, z) }).toTypedArray())
