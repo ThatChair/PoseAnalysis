@@ -7,6 +7,7 @@ import javafx.beans.binding.Bindings
 import javafx.geometry.Point3D
 import javafx.scene.layout.Pane
 
+
 object Pane3D : Pane() {
 
 

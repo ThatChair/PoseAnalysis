@@ -153,6 +153,12 @@ class App : Application() {
 
             // Shows the welcome stuff
             isWelcome.set(true)
+
+            if (needsUpdate) {
+                Platform.runLater {
+                    MainPane.addUpdateText()
+                }
+            }
         }
     }
 

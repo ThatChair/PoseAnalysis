@@ -4,11 +4,13 @@ import com.pose.analysis.App.Companion.VERSION
 import com.pose.analysis.App.Companion.bgColor
 import com.pose.analysis.App.Companion.mutedTextColor
 import com.pose.analysis.App.Companion.smallFont
+import com.pose.analysis.App.Companion.textColor
 import com.pose.analysis.resources.extensions.setColor
 import com.pose.analysis.resources.functions.println
 import javafx.geometry.Insets
 import javafx.scene.control.Label
 import javafx.scene.image.ImageView
+import javafx.scene.input.KeyCode
 import javafx.scene.layout.*
 import javafx.stage.Screen
 
@@ -46,15 +48,15 @@ object MainPane: VBox() {
         topPane.maxHeight = screenHeight / 8.0
 
         // Sets up the version text
-        val text = Label(VERSION)
-        text.layoutX = (screenWidth - (text.text.length * 7))
-        text.font = smallFont
-        text.setColor(mutedTextColor)
+        val versionText = Label(VERSION)
+        versionText.layoutX = (screenWidth - (versionText.text.length * 7))
+        versionText.font = smallFont
+        versionText.setColor(mutedTextColor)
 
         // Adds all children to the top pane
         topPane.children.addAll(
             MainMenuBar,
-            text
+            versionText
         )
 
         // Sets preferred and max height for the middle pane
@@ -97,6 +99,17 @@ object MainPane: VBox() {
                 startLoading()
             }
         }
+
+
+        MainPane.setOnKeyPressed { e ->
+            if (animation.isNotEmpty()) {
+                if (e.code === KeyCode.PERIOD) {
+                    increaseFrame()
+                } else if (e.code === KeyCode.COMMA) {
+                    decreaseFrame()
+                }
+            }
+        }
     }
 
     // Shows the loading gif
@@ -109,5 +122,18 @@ object MainPane: VBox() {
     private fun stopLoading() {
         println("Stopping loading")
         loadingGif.isVisible = false
+    }
+
+    fun addUpdateText() {
+        // Sets up the update text
+        val updateText = Label("Update Available!")
+        updateText.layoutX = (screenWidth - (updateText.text.length * 6.6))
+        updateText.layoutY = 15.0
+        updateText.font = smallFont
+        updateText.setColor(textColor)
+
+        topPane.children.add(updateText)
+
+        MainPane.children[0] = topPane
     }
 }

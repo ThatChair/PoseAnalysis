@@ -149,3 +149,19 @@ fun loadAnimation(path: String) {
     }
 }
 
+// Jumps ahead one frame
+fun increaseFrame() {
+    if (!isAnimationPlaying.get()) {
+        animPercent.set(((currentFrame + 1.0) / frameNumber.get()))
+        renderPerson()
+
+    }
+}
+
+// Jumps back one frame
+fun decreaseFrame() {
+    if (!isAnimationPlaying.get()) {
+        animPercent.set(((currentFrame - 1.0) / frameNumber.get()))
+        renderPerson()
+    }
+}

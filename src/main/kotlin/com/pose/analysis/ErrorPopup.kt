@@ -8,6 +8,8 @@ import javafx.stage.Popup
 object ErrorPopup : Popup() {
 
     init {
+        ErrorPopup.isHideOnEscape = true
+
         // Adds the error pane to the popup
         ErrorPopup.content.addAll(
             ErrorPane
