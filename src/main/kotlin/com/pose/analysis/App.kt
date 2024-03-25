@@ -26,10 +26,10 @@ class App : Application() {
     companion object {
 
         // Defines the version of the application
-        const val VERSION = "v1.0.4"
+        const val VERSION = "v1.0.5"
 
         // Defines the version as an Int for version comparison
-        const val VERSIONNUM = 104
+        const val VERSIONNUM = 105
 
         // Determines whether the app needs an update
         var needsUpdate = false
