@@ -5,6 +5,7 @@ import com.google.gson.JsonElement
 import com.pose.analysis.ErrorPane.showError
 import com.pose.analysis.Pane3D.renderPerson
 import com.pose.analysis.resources.classes.Wireframe3D
+import com.pose.analysis.resources.functions.getAnglularVelocity
 import com.pose.analysis.resources.functions.println
 import javafx.animation.AnimationTimer
 import javafx.application.Platform
@@ -75,6 +76,14 @@ val animationTimer = object : AnimationTimer() {
 // Just gets the current frame number. What else would it do?
 val currentFrame: Int
     get() = (animPercent.get() * (frameNumber.get())).toInt()
+
+// Gets the current angular velocity of the person's left arm in radians per second
+val currentLeftAngularVelocityRadiansPerSecond: Double
+    get() = (animation.getAnglularVelocity(currentFrame, true)) * fps
+
+// Gets the current angular velocity of the person's right arm in radians per second
+val currentRightAngularVelocityRadiansPerSecond: Double
+    get() = (animation.getAnglularVelocity(currentFrame, false)) * fps
 
 
 // Loads an animation from the json file at the given path and updates the animation variable accordingly

@@ -2,6 +2,7 @@ package com.pose.analysis
 
 import com.pose.analysis.MainPane.middlePane
 import com.pose.analysis.resources.classes.Connections
+import com.pose.analysis.resources.extensions.round
 import com.pose.analysis.resources.functions.render
 import javafx.beans.binding.Bindings
 import javafx.geometry.Point3D
@@ -139,5 +140,11 @@ object Pane3D : Pane() {
             FOCALLENGTH,
             zoom
         )
+
+        if (MainMenuBar.viewingAngularVelocity.get()) {
+            MainPane.angularVelocityText.text = "Arm Angular Velocities (Radians / Second):\n" +
+                    "Left: ${currentLeftAngularVelocityRadiansPerSecond.round(3)}\n" +
+                    "Right: ${currentRightAngularVelocityRadiansPerSecond.round(3)}"
+        }
     }
 }

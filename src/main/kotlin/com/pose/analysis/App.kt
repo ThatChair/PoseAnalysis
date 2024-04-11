@@ -145,7 +145,10 @@ class App : Application() {
                 runCommand("$pythonPath -m pip install -r $pythonDir\\requirements.txt")
             } catch (e: Exception) {
                 Platform.runLater {
-                    showError(e.toString())
+                    showError(
+                        "CANNOT INSTALL PYTHON REQUIREMENTS",
+                        "Most features of the app will still work, just not processing video"
+                    )
                 }
             }
 

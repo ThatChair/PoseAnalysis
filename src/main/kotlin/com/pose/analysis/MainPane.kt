@@ -32,6 +32,8 @@ object MainPane: VBox() {
     // Sets up the loading gif from the file
     val loadingGif = ImageView("loading.gif")
 
+    val angularVelocityText = Label()
+
     init {
 
         // Sets the background to the specified background color in App
@@ -53,10 +55,15 @@ object MainPane: VBox() {
         versionText.font = smallFont
         versionText.setColor(mutedTextColor)
 
+        angularVelocityText.layoutY = 30.0
+        angularVelocityText.font = smallFont
+        angularVelocityText.setColor(mutedTextColor)
+
         // Adds all children to the top pane
         topPane.children.addAll(
             MainMenuBar,
-            versionText
+            versionText,
+            angularVelocityText
         )
 
         // Sets preferred and max height for the middle pane
@@ -108,6 +115,14 @@ object MainPane: VBox() {
                 } else if (e.code === KeyCode.COMMA) {
                     decreaseFrame()
                 }
+            }
+        }
+
+        MainMenuBar.versionNumShowing.addListener { _, _, newValue ->
+            if (newValue) {
+                versionText.text = VERSION
+            } else {
+                versionText.text = ""
             }
         }
     }

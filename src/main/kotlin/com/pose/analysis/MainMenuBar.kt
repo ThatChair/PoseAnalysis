@@ -15,6 +15,8 @@ import com.pose.analysis.resources.extensions.setColor
 import com.pose.analysis.resources.functions.println
 import com.pose.analysis.resources.functions.runCommand
 import javafx.application.Platform
+import javafx.beans.property.BooleanProperty
+import javafx.beans.property.SimpleBooleanProperty
 import javafx.scene.control.Label
 import javafx.scene.control.Menu
 import javafx.scene.control.MenuBar
@@ -39,6 +41,14 @@ object MainMenuBar: MenuBar() {
     private val fileOpenVideoMenuItem = MenuItem("Video")
     private val fileOpenAnimationMenuItem = MenuItem("Animation")
     private val fileExportMenuItem = MenuItem("Export")
+
+    // Sets up view menu and all submenus/graphics/
+    private val viewMenu = Menu("")
+    private val viewMenuGraphic = Label("View")
+    private val viewVersionMenuItem = MenuItem("Version Number •")
+    var versionNumShowing: BooleanProperty = SimpleBooleanProperty(true)
+    private val viewAngularVelocityMenuItem = MenuItem("Angular Velocity (BETA)  ")
+    val viewingAngularVelocity: BooleanProperty = SimpleBooleanProperty(false)
 
     // Sets up help menu and all submenus/graphics
     private val helpMenu = Menu("")
@@ -88,6 +98,29 @@ object MainMenuBar: MenuBar() {
 
         )
 
+        // Sets the color of the View Menu graphic to the correct color
+        viewMenuGraphic.setColor(textColor)
+        // Sets the font of the Help Menu graphic
+        viewMenuGraphic.font = smallFont
+        // Sets the graphic of the Help Menu
+        viewMenu.graphic = viewMenuGraphic
+
+        viewVersionMenuItem.setOnAction {
+            toggleVersionNum()
+        }
+
+        viewAngularVelocityMenuItem.setOnAction {
+            toggleVelocity()
+        }
+
+        // Adds all submenus to the view menu
+        viewMenu.items.addAll(
+
+            viewVersionMenuItem,
+            viewAngularVelocityMenuItem
+
+        )
+
         // Sets the color of the Help Menu graphic to the correct color
         helpMenuGraphic.setColor(textColor)
         // Sets the font of the Help Menu graphic
@@ -116,6 +149,7 @@ object MainMenuBar: MenuBar() {
         MainMenuBar.menus.addAll(
 
             fileMenu,
+            viewMenu,
             helpMenu
 
         )
@@ -133,7 +167,7 @@ object MainMenuBar: MenuBar() {
         fileChooser.title = "Load Video"
 
         // Makes a filter that only accepts MP4 files
-        val extensionFilter = ExtensionFilter("MP4 files (*.mp4)", "*.mp4")
+        val extensionFilter = ExtensionFilter("Video files (*.mp4, *.mov)", "*.mp4", "*.mov")
         // Adds the filter to the file chooser
         fileChooser.extensionFilters.add(extensionFilter)
 
@@ -265,6 +299,24 @@ object MainMenuBar: MenuBar() {
             println("File copied successfully.")
         } catch (e: Exception) {
             showError("Error copying file: ${e.message}")
+        }
+    }
+
+    private fun toggleVersionNum() {
+        versionNumShowing.set(!versionNumShowing.get())
+        if (versionNumShowing.get()) {
+            viewVersionMenuItem.text = "Version Number •"
+        } else {
+            viewVersionMenuItem.text = "Version Number  "
+        }
+    }
+
+    private fun toggleVelocity() {
+        viewingAngularVelocity.set(!viewingAngularVelocity.get())
+        if (viewingAngularVelocity.get()) {
+            viewAngularVelocityMenuItem.text = "Angular Velocity (BETA) •"
+        } else {
+            viewAngularVelocityMenuItem.text = "Angular Velocity (BETA)  "
         }
     }
 

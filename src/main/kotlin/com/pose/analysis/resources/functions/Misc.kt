@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.pose.analysis.SliderPane
 import com.pose.analysis.isAnimationPlaying
+import com.pose.analysis.resources.classes.Wireframe3D
 import javafx.scene.input.MouseButton
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Line
@@ -54,4 +55,22 @@ fun getLatestRelease(): Int {
     } catch (_: Exception) {
         return 0
     }
+}
+
+// Returns angular velocity of a specified arm in radians
+fun Array<Wireframe3D>.getAnglularVelocity(frame: Int, isLeftArm: Boolean = false): Double {
+    if (frame >= this.size || frame == 0) return 0.0
+    val shoulderID = if (isLeftArm) 11 else 12
+    val fingerID = if (isLeftArm) 19 else 20
+
+    val prevShoulderPos = this[frame - 1].points[shoulderID]
+    val shoulderPos = this[frame].points[shoulderID]
+
+    val prevFingerPos = this[frame - 1].points[fingerID]
+    val fingerPos = this[frame].points[fingerID]
+
+    val prevAngle = prevShoulderPos.angle(prevFingerPos)
+    val currentAngle = shoulderPos.angle(fingerPos)
+
+    return currentAngle - prevAngle
 }
