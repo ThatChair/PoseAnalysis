@@ -5,7 +5,7 @@ import com.google.gson.JsonElement
 import com.pose.analysis.ErrorPane.showError
 import com.pose.analysis.Pane3D.renderPerson
 import com.pose.analysis.resources.classes.Wireframe3D
-import com.pose.analysis.resources.functions.getAnglularVelocity
+import com.pose.analysis.resources.functions.getAngularVelocity
 import com.pose.analysis.resources.functions.println
 import javafx.animation.AnimationTimer
 import javafx.application.Platform
@@ -79,11 +79,11 @@ val currentFrame: Int
 
 // Gets the current angular velocity of the person's left arm in radians per second
 val currentLeftAngularVelocityRadiansPerSecond: Double
-    get() = (animation.getAnglularVelocity(currentFrame, true)) * fps
+    get() = (animation.getAngularVelocity(currentFrame, true)) * fps
 
 // Gets the current angular velocity of the person's right arm in radians per second
 val currentRightAngularVelocityRadiansPerSecond: Double
-    get() = (animation.getAnglularVelocity(currentFrame, false)) * fps
+    get() = (animation.getAngularVelocity(currentFrame, false)) * fps
 
 
 // Loads an animation from the json file at the given path and updates the animation variable accordingly

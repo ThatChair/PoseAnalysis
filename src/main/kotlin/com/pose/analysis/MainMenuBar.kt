@@ -32,7 +32,7 @@ import java.nio.file.StandardCopyOption
 import kotlin.concurrent.thread
 
 // The main menu bar that at the top of the screen
-object MainMenuBar: MenuBar() {
+object MainMenuBar : MenuBar() {
 
     // Sets up file menu and all submenus/graphics
     private val fileMenu = Menu("")
@@ -96,7 +96,7 @@ object MainMenuBar: MenuBar() {
             fileOpenMenu,
             fileExportMenuItem,
 
-        )
+            )
 
         // Sets the color of the View Menu graphic to the correct color
         viewMenuGraphic.setColor(textColor)

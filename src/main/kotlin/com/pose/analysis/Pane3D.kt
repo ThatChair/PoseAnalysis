@@ -54,7 +54,7 @@ object Pane3D : Pane() {
 
     // Specifies the camera position and the screen position in 3d space
     val cameraPos = Point3D(0.0, 0.0, 5.0)
-    private const val FOCALLENGTH = 3.0
+    private const val FOCAL_LENGTH = 3.0
 
     // Stores the x and y angle the person is rotated at
     private var yAngle = 0.0
@@ -65,7 +65,7 @@ object Pane3D : Pane() {
     private var xAngleOffset = 0.0
 
     // Stores the zoom level
-    var zoom = 200.0
+    private var zoom = 200.0
         set(value) {
             field = if (value > 0) value else 0.0
         }
@@ -137,7 +137,7 @@ object Pane3D : Pane() {
             yAngle + yAngleOffset,
             currentFrame,
             cameraPos,
-            FOCALLENGTH,
+            FOCAL_LENGTH,
             zoom
         )
 

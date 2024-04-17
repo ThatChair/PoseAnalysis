@@ -29,7 +29,7 @@ class App : Application() {
         const val VERSION = "v1.1.0"
 
         // Defines the version as an Int for version comparison
-        const val VERSIONNUM = 110
+        const val VERSION_NUM = 110
 
         // Determines whether the app needs an update
         var needsUpdate = false
@@ -53,15 +53,23 @@ class App : Application() {
 
         // Sets up the stage, the top level container that contains the entire application
         lateinit var stage: Stage
+
         // Sets up a static BG color value for global use. From a scale of 0 (Black) to 255 (White)
-        private const val BACKGROUNDVALUE = 35.0
+        private const val BACKGROUND_VALUE = 35.0
+
         // Turns the static color value into a greyscale color usable by JavaFX
-        val bgColor: Color = Color.color(BACKGROUNDVALUE / 255, BACKGROUNDVALUE / 255, BACKGROUNDVALUE / 255)
+        val bgColor: Color = Color.color(BACKGROUND_VALUE / 255, BACKGROUND_VALUE / 255, BACKGROUND_VALUE / 255)
+
         // The opposite of the background color, for use in text or other nodes that need to be high visibility.
-        val textColor: Color = Color.color((255 - BACKGROUNDVALUE) / 255, (255 - BACKGROUNDVALUE) / 255, (255 - BACKGROUNDVALUE) / 255)
+        val textColor: Color =
+            Color.color((255 - BACKGROUND_VALUE) / 255, (255 - BACKGROUND_VALUE) / 255, (255 - BACKGROUND_VALUE) / 255)
 
         // A more muted version of textColor, easy on eyes, good for large text
-        val mutedTextColor: Color = Color.color(((255 - BACKGROUNDVALUE) / 255) * 0.5, ((255 - BACKGROUNDVALUE) / 255) * 0.5, ((255 - BACKGROUNDVALUE) / 255) * 0.5)
+        val mutedTextColor: Color = Color.color(
+            ((255 - BACKGROUND_VALUE) / 255) * 0.5,
+            ((255 - BACKGROUND_VALUE) / 255) * 0.5,
+            ((255 - BACKGROUND_VALUE) / 255) * 0.5
+        )
 
         // Gets the path the application is located, used for finding assets
         val path: String = System.getProperty("user.dir")
@@ -74,8 +82,10 @@ class App : Application() {
 
         // Load the TTF file
         val smallFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 13.0)
+
         // Load the TTF file
         val mediumFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 36.0)
+
         // Load the TTF file
         val largeFont: Font = Font.loadFont(App::class.java.getResourceAsStream("/VarelaRound-Regular.ttf"), 100.0)
 
@@ -88,6 +98,7 @@ class App : Application() {
             launch(App::class.java, *args)
         }
     }
+
     // Called when the application is ready to launch
     override fun start(stage: Stage) {
         // Gets the properties of the primary screen
@@ -123,7 +134,7 @@ class App : Application() {
                 numLoadingThreads.increment(1)
 
                 // Checks latest release and if there is a newer version
-                if (getLatestRelease() > VERSIONNUM) {
+                if (getLatestRelease() > VERSION_NUM) {
                     needsUpdate = true
                 }
 

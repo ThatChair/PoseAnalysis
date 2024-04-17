@@ -4,8 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="Better python error messages&#10;Unstable arm angular velocity">
+    <list default="true" id="c1f763aa-37f1-49ff-ba1d-8b204e494434" name="Changes" comment="updated version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/AnimationManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/AnimationManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/App.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainMenuBar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainPane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/MainPane.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Pane3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/Pane3D.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/SliderPane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/SliderPane.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/WelcomePane.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/WelcomePane.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/classes/Connections.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/classes/Connections.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/extensions/Point3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/extensions/Point3D.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/functions/Misc.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pose/analysis/resources/functions/Misc.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +126,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.EditorConfig&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -136,7 +147,7 @@
       <recent name="com.pose.analysis" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PoseAnalysis [fatJar]">
+  <component name="RunManager" selected="Gradle.PoseAnalysis [run]">
     <configuration name="installDeps" type="BatchConfigurationType" factoryName="Batch" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="WORKING_DIRECTORY" value="$USER_HOME$/OneDrive/App/appTest" />
@@ -245,8 +256,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.PoseAnalysis [fatJar]" />
         <item itemvalue="Gradle.PoseAnalysis [run]" />
+        <item itemvalue="Gradle.PoseAnalysis [fatJar]" />
         <item itemvalue="Gradle.PoseAnalysis [fatJarWindowsX64]" />
         <item itemvalue="Gradle.PoseAnalysis [fatJarMacX64]" />
         <item itemvalue="Batch.installDeps" />
@@ -565,12 +576,19 @@
       <option name="project" value="LOCAL" />
       <updated>1712816653245</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="updated version">
+      <option name="closed" value="true" />
+      <created>1713046885473</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1713046885473</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Removed Help -&gt; Search" />
     <MESSAGE value="Added exporting and importing json files. Also added error handling" />
     <MESSAGE value="added packaging crap and help-&gt; info and help _. readme" />
     <MESSAGE value="fixed zooming for touchpad and scroll wheel" />
@@ -595,7 +613,8 @@
     <MESSAGE value="added some comments. some need to be improved and made clearer though" />
     <MESSAGE value="version stuff for update" />
     <MESSAGE value="Better python error messages&#10;Unstable arm angular velocity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better python error messages&#10;Unstable arm angular velocity" />
+    <MESSAGE value="updated version" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated version" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

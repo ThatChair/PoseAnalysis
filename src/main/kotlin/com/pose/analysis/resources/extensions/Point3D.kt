@@ -14,7 +14,7 @@ fun Point3D.reflect(x: Boolean, y: Boolean, z: Boolean): Point3D {
     )
 }
 
-// Converts a Point3D to the screenspace using the camera position and the focal length. (It is assumed that the camera is pointed towards the screen center and the screen is perpendicular to the camera)
+// Converts a Point3D to the screen space using the camera position and the focal length. (It is assumed that the camera is pointed towards the screen center and the screen is perpendicular to the camera)
 fun Point3D.toScreenSpace(focalLength: Double, cameraPosition: Point3D): Point3D {
 
     // Finds the focal point, determined by adding a vector perpendicular to the camera and with a magnitude of the focal length to the camera position

@@ -18,10 +18,10 @@ import javafx.scene.shape.Circle
 import javafx.scene.shape.Line
 import javafx.scene.shape.StrokeLineCap
 
-object SliderPane: Pane() {
+object SliderPane : Pane() {
 
     // Defines the height of the slider for calculations
-    const val SLIDERHEIGHT = 25.0
+    const val SLIDER_HEIGHT = 25.0
 
     // Sets up the play button and its image
     private var playButton = ToggleButton()
@@ -40,28 +40,28 @@ object SliderPane: Pane() {
 
     init {
         // Gets the slider point to the right position and size
-        sliderPoint.centerY = SLIDERHEIGHT / 2.0
+        sliderPoint.centerY = SLIDER_HEIGHT / 2.0
         sliderPoint.centerXProperty().bind(sliderPointPos)
-        sliderPoint.radius = SLIDERHEIGHT / 1.75
+        sliderPoint.radius = SLIDER_HEIGHT / 1.75
         sliderPoint.fill = textColor
 
         // Sets the start of the slider
-        sliderLine.startX = SLIDERHEIGHT * 2.0
+        sliderLine.startX = SLIDER_HEIGHT * 2.0
 
         // Makes sure the slider point is at the beginning of the slider
         sliderPointPos.set(sliderLine.startX)
 
         // Sets the slider to the right place and size
-        sliderLine.startY = SLIDERHEIGHT / 2.0
-        sliderLine.endX = screenWidth - (SLIDERHEIGHT / 2.0)
+        sliderLine.startY = SLIDER_HEIGHT / 2.0
+        sliderLine.endX = screenWidth - (SLIDER_HEIGHT / 2.0)
         sliderLine.endY = sliderLine.startY
-        sliderLine.strokeWidth = SLIDERHEIGHT / 2.0
+        sliderLine.strokeWidth = SLIDER_HEIGHT / 2.0
         sliderLine.strokeLineCap = StrokeLineCap.ROUND
         sliderLine.stroke = mutedTextColor
 
         // Moves the play button to the correct location
-        playButton.layoutX = -(SLIDERHEIGHT / 7.5)
-        playButton.layoutY = -(SLIDERHEIGHT / 7.5)
+        playButton.layoutX = -(SLIDER_HEIGHT / 7.5)
+        playButton.layoutY = -(SLIDER_HEIGHT / 7.5)
 
         // Sets the play button graphic
         playButton.graphic = playImage
@@ -88,7 +88,7 @@ object SliderPane: Pane() {
         }
 
         // Scales the play button image accordingly
-        playImage.fitHeight = SLIDERHEIGHT
+        playImage.fitHeight = SLIDER_HEIGHT
         playImage.fitWidth = playImage.fitHeight
 
         // Adds all children to the slider pane
@@ -116,11 +116,10 @@ object SliderPane: Pane() {
 
         // Makes the slider only visible when the app isn't loading and when the welcome text is gone
         SliderPane.visibleProperty().bind(
-            Bindings.
-                `when`(
-                    isWelcome.not()
+            Bindings.`when`(
+                isWelcome.not()
                     .and(loadingGif.visibleProperty().not())
-                )
+            )
                 .then(true)
                 .otherwise(false)
         )

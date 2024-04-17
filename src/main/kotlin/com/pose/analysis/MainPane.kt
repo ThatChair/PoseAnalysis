@@ -15,13 +15,14 @@ import javafx.scene.layout.*
 import javafx.stage.Screen
 
 // The main pane (I know, great name, right!) of the app. Everything is added to this pane
-object MainPane: VBox() {
+object MainPane : VBox() {
 
     // Stores the primary screen properties for later use
     private val screen: Screen = Screen.getPrimary()
 
     // Stores the primary screen width for later use
     val screenWidth = screen.visualBounds.width
+
     // Stores the primary screen height for later use
     val screenHeight = screen.visualBounds.height
 
@@ -80,8 +81,8 @@ object MainPane: VBox() {
         )
 
         // Sets preferred and max height for the bottom pane
-        bottomPane.prefHeight = SliderPane.SLIDERHEIGHT
-        bottomPane.maxHeight = SliderPane.SLIDERHEIGHT * 2
+        bottomPane.prefHeight = SliderPane.SLIDER_HEIGHT
+        bottomPane.maxHeight = SliderPane.SLIDER_HEIGHT * 2
 
         // Adds all children to the bottom pane
         bottomPane.children.addAll(

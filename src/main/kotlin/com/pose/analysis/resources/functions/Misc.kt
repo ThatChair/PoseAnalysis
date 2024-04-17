@@ -58,7 +58,7 @@ fun getLatestRelease(): Int {
 }
 
 // Returns angular velocity of a specified arm in radians
-fun Array<Wireframe3D>.getAnglularVelocity(frame: Int, isLeftArm: Boolean = false): Double {
+fun Array<Wireframe3D>.getAngularVelocity(frame: Int, isLeftArm: Boolean = false): Double {
     if (frame >= this.size || frame == 0) return 0.0
     val shoulderID = if (isLeftArm) 11 else 12
     val fingerID = if (isLeftArm) 19 else 20

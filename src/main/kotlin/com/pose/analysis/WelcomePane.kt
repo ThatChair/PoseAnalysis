@@ -9,7 +9,7 @@ import javafx.geometry.Pos
 import javafx.scene.control.Label
 import javafx.scene.layout.StackPane
 
-object WelcomePane: StackPane() {
+object WelcomePane : StackPane() {
 
     // Sets up the 4 lines of the main welcome text
     private val welcomeText = Label("Welcome to PoseAnalysis!")
