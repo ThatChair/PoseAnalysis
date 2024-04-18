@@ -108,6 +108,14 @@ object MainPane : VBox() {
             }
         }
 
+        animationName.addListener { _, _, newValue ->
+            if (newValue != "") {
+                App.stage.title = "Pose Analysis - $newValue"
+            } else {
+                App.stage.title = "Pose Analysis"
+            }
+        }
+
 
         MainPane.setOnKeyPressed { e ->
             if (animation.isNotEmpty()) {

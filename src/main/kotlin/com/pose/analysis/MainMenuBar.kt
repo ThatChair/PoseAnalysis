@@ -216,6 +216,9 @@ object MainMenuBar : MenuBar() {
             Platform.runLater {
                 animPercent.set(0.0)
                 renderPerson()
+                if (selectedFile != null) {
+                    animationName.set(selectedFile.name)
+                }
             }
 
             App.numLoadingThreads.decrement(1)
@@ -251,6 +254,7 @@ object MainMenuBar : MenuBar() {
 
                 Platform.runLater {
                     isWelcome.set(false)
+                    animationName.set(selectedFile.name)
                 }
                 loadAnimation(selectedFile.path)
                 Platform.runLater {

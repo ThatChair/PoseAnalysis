@@ -14,6 +14,7 @@ import javafx.geometry.Point3D
 import java.io.File
 import kotlin.properties.Delegates
 
+var animationName: StringProperty = SimpleStringProperty("")
 
 // BooleanProperty to keep track when WelcomePane should be displayed
 var isWelcome: BooleanProperty = SimpleBooleanProperty(true)
